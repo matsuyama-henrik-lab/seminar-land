@@ -13,6 +13,12 @@ extends Node2D
 # They still play in sequence mode. Matched by scene path, so an excluded level
 # stays hidden even if it appears several times in `levels`. Add more via the Inspector.
 @export var exclude_from_level_select: Array[PackedScene] = []
+# Levels shown in the separate "チュートリアル" (tutorial) menu, which is a second
+# instance of the level-select scene. Leave empty and the tutorial button hides
+# itself, so the menu only appears once at least one tutorial is assigned. These
+# always play as single levels (finishing returns to the menu); they are NOT part
+# of the sequential "Start" playthrough. Add via the Inspector.
+@export var tutorial_levels: Array[PackedScene] = []
 # Optional level shown running behind the menus as a live backdrop. Its player
 # (if any) is frozen and ignores input, and no gameplay signals are wired up, so
 # it just animates and never reacts to the user. Leave empty for a plain menu.
@@ -37,13 +43,19 @@ var _single_level: bool = false
 # them by hand in _handle_menu_touch, just like the on-screen game buttons.
 @onready var _main_menu: Control = $MenuLayer/MainMenu
 @onready var _level_select: Control = $MenuLayer/LevelSelect
+@onready var _tutorial_select: Control = $MenuLayer/TutorialSelect
+
+# The level array the currently-loaded level came from (`levels` for Start /
+# stage-select, `tutorial_levels` for the tutorial menu). `current_level_index`
+# indexes into this, so the swap machinery works the same for both.
+var _active_levels: Array[PackedScene] = []
 
 # Manual touch state for the menus (see comment above). Tracks the finger that
 # is choosing a menu button so a tap fires it but a drag scrolls instead.
 var _menu_touch_index = null
 var _menu_touch_button: Button = null
 var _menu_touch_start := Vector2.ZERO
-var _cached_level_scroll: ScrollContainer = null
+var _cached_scrolls := {}  # select menu Control -> its ScrollContainer
 
 func _ready() -> void:
 	_setup_lava_background()
@@ -113,17 +125,31 @@ func _setup_web_fullscreen() -> void:
 func _connect_menus() -> void:
 	_main_menu.start_pressed.connect(_on_start_pressed)
 	_main_menu.select_pressed.connect(_on_select_pressed)
+	_main_menu.tutorial_pressed.connect(_on_tutorial_open)
 	_level_select.level_chosen.connect(_on_level_pressed)
 	_level_select.back_pressed.connect(_show_main_menu)
+	_tutorial_select.level_chosen.connect(_on_tutorial_level_pressed)
+	_tutorial_select.play_all_pressed.connect(_on_tutorial_play_all)
+	_tutorial_select.back_pressed.connect(_show_main_menu)
+	# Only offer the tutorial menu when at least one tutorial level is assigned.
+	_main_menu.set_tutorial_visible(_has_tutorials())
 
-# Builds the level-select entries from `levels`, skipping excluded scenes. Each
-# entry is { "index": position in `levels`, "label": "N. Title" }.
-func _level_entries() -> Array:
+func _has_tutorials() -> bool:
+	for scene in tutorial_levels:
+		if scene != null:
+			return true
+	return false
+
+# Builds level-select entries from a source array, optionally skipping excluded
+# scenes. Each entry is { "index": position in `source`, "label": "N. Title" }.
+# Used for both the stage list (`levels`, with exclusions) and the tutorial list
+# (`tutorial_levels`, no exclusions).
+func _entries_for(source: Array[PackedScene], apply_exclude: bool) -> Array:
 	var entries: Array = []
-	var number := 0  # 1-based position in the playable list (excluded levels skipped)
-	for i in range(levels.size()):
-		var scene := levels[i]
-		if scene == null or _is_excluded(scene):
+	var number := 0  # 1-based position in the list (excluded/null scenes skipped)
+	for i in range(source.size()):
+		var scene := source[i]
+		if scene == null or (apply_exclude and _is_excluded(scene)):
 			continue
 		number += 1
 		entries.append({ "index": i, "label": "%d. %s" % [number, _level_title(scene)] })
@@ -161,21 +187,42 @@ func _find_title_node(node: Node) -> SingleInstanceTitleNode:
 func _on_start_pressed() -> void:
 	_single_level = false
 	_hide_menu()
-	_load_level(0)
+	_load_level(0, levels)
 
 func _on_select_pressed() -> void:
-	_level_select.populate(_level_entries())
+	_level_select.populate(_entries_for(levels, true))
 	_main_menu.hide()
 	_level_select.show()
 
 func _on_level_pressed(index: int) -> void:
 	_single_level = true
 	_hide_menu()
-	_load_level(index)
+	_load_level(index, levels)
+
+# Opens the tutorial menu (a second level-select instance) filled from
+# `tutorial_levels` and titled "チュートリアル".
+func _on_tutorial_open() -> void:
+	_tutorial_select.populate(_entries_for(tutorial_levels, false), "チュートリアル", true)
+	_main_menu.hide()
+	_tutorial_select.show()
+
+func _on_tutorial_level_pressed(index: int) -> void:
+	_single_level = true
+	_hide_menu()
+	_load_level(index, tutorial_levels)
+
+# "順番にプレイ": run every tutorial in order, like Start but over tutorial_levels.
+# The shared swap engine advances through _active_levels and returns to the menu
+# when the last one finishes.
+func _on_tutorial_play_all() -> void:
+	_single_level = false
+	_hide_menu()
+	_load_level(0, tutorial_levels)
 
 func _hide_menu() -> void:
 	_main_menu.hide()
 	_level_select.hide()
+	_tutorial_select.hide()
 
 func _show_main_menu() -> void:
 	# Also used to come back after finishing: drop any running level and reset the
@@ -191,6 +238,7 @@ func _show_main_menu() -> void:
 	
 	_lava_material.set_shader_parameter("sky_ends", 600)
 	_level_select.hide()
+	_tutorial_select.hide()
 	_main_menu.show()
 	_show_background()
 
@@ -216,23 +264,33 @@ func _free_background() -> void:
 		_background_level = null
 
 func _menu_visible() -> bool:
-	return _main_menu.visible or _level_select.visible
+	return _main_menu.visible or _level_select.visible or _tutorial_select.visible
 
-# The level list lives inside a ScrollContainer in the LevelSelect scene. Found
-# and cached lazily so we don't hard-code the scene's internal node path.
-func _level_scroll() -> ScrollContainer:
-	if _cached_level_scroll == null or not is_instance_valid(_cached_level_scroll):
-		for n in _level_select.find_children("*", "ScrollContainer", true, false):
-			_cached_level_scroll = n
+# The select menu currently on screen (stage list or tutorial list), or null.
+func _visible_select() -> Control:
+	if _level_select.visible:
+		return _level_select
+	if _tutorial_select.visible:
+		return _tutorial_select
+	return null
+
+# The level list lives inside a ScrollContainer in each select scene. Found and
+# cached per menu (lazily) so we don't hard-code the scene's internal node path.
+func _scroll_for(menu: Control) -> ScrollContainer:
+	if menu == null:
+		return null
+	if not _cached_scrolls.has(menu) or not is_instance_valid(_cached_scrolls[menu]):
+		for n in menu.find_children("*", "ScrollContainer", true, false):
+			_cached_scrolls[menu] = n
 			break
-	return _cached_level_scroll
+	return _cached_scrolls.get(menu)
 
 # The visible menu button under `pos`, or null. Buttons in the level list are
 # clipped to their ScrollContainer's viewport: one scrolled out of view still
 # has a global rect (which can sit under another button), so only its visible
 # part counts.
 func _menu_button_at(pos: Vector2) -> Button:
-	var scroll := _level_scroll()
+	var scroll := _scroll_for(_visible_select())
 	for btn in $MenuLayer.find_children("*", "Button", true, false):
 		if not btn.is_visible_in_tree() or btn.disabled:
 			continue
@@ -260,10 +318,9 @@ func _handle_menu_touch(event: InputEvent) -> void:
 			_menu_touch_index = null
 			_menu_touch_button = null
 	elif event is InputEventScreenDrag and event.index == _menu_touch_index:
-		if _level_select.visible:
-			var scroll := _level_scroll()
-			if scroll:
-				scroll.scroll_vertical -= int(event.relative.y)
+		var scroll := _scroll_for(_visible_select())
+		if scroll:
+			scroll.scroll_vertical -= int(event.relative.y)
 		# Once the finger has moved, treat it as a scroll, not a tap.
 		if event.position.distance_to(_menu_touch_start) > 24.0:
 			_menu_touch_button = null
@@ -306,7 +363,7 @@ func _pointer_release(id) -> void:
 func _input(event: InputEvent) -> void:
 	# ESC (ui_cancel): return to the main menu from a level or the level list.
 	if event.is_action_pressed("ui_cancel"):
-		if (_current_level and not _menu_visible()) or _level_select.visible:
+		if (_current_level and not _menu_visible()) or _visible_select() != null:
 			_show_main_menu()
 			get_viewport().set_input_as_handled()
 		return
@@ -400,7 +457,7 @@ func next_level() -> void:
 	# Single-level mode, or the end of a full playthrough, returns to the menu
 	# instead of advancing. Deferred so we don't free the level while its own
 	# `level_complete` signal is still being emitted.
-	if _single_level or current_level_index + 1 >= levels.size():
+	if _single_level or current_level_index + 1 >= _active_levels.size():
 		_show_main_menu.call_deferred()
 		return
 	current_level_index += 1
@@ -438,11 +495,14 @@ func reload_level() -> void:
 	_swapping = true
 	_do_swap.call_deferred()
 
-func _load_level(index: int) -> void:
-	# Entry point for the initial load from _ready().
+func _load_level(index: int, source: Array[PackedScene]) -> void:
+	# Entry point for the initial load from a menu. `source` is the array the
+	# level comes from (`levels` or `tutorial_levels`); the swap machinery then
+	# indexes into it via `_active_levels`.
 	if _swapping:
 		return
 	_swapping = true
+	_active_levels = source
 	current_level_index = index
 	_do_swap.call_deferred()
 
@@ -453,11 +513,11 @@ func _do_swap() -> void:
 	if _current_level:
 		_current_level.free()  # immediate, so the old level can't overlap the new one for a frame
 		_current_level = null
-	if levels.is_empty():
+	if _active_levels.is_empty():
 		push_warning("World: no levels assigned")
 		_swapping = false
 		return
-	_current_level = levels[current_level_index].instantiate()
+	_current_level = _active_levels[current_level_index].instantiate()
 	# Some mobile browsers can't run GPUParticles2D (no compute support), so swap
 	# them for CPUParticles2D before the level is shown. Done while detached from
 	# the tree so the GPU nodes never get a chance to render a broken frame.

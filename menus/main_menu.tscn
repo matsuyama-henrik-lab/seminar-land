@@ -55,6 +55,13 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 36
 text = "ステージ選択"
 
+[node name="Tutorial" type="Button" parent="Content/Box" unique_id=653060763]
+custom_minimum_size = Vector2(680, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "チュートリアル"
+
 [node name="subtitle" type="Label" parent="Content/Box" unique_id=2027185337]
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2

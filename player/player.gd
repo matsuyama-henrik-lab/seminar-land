@@ -49,7 +49,6 @@ func launch(v: Vector2, duration:float) -> void:
 	# ズームアウト → ズームイン（1 → 0.5 → 1）を1周。
 	var zoom_level = clamp(1.0/duration,0.3,0.8)
 	_zoom_tween.tween_method(_zoom_to, 1.0, zoom_level, 0.5).set_trans(Tween.TRANS_SINE)
-	#_zoom_tween.tween_interval(0.6)
 	_zoom_tween.tween_interval(clamp(duration-0.5-1.0,0,10))
 	_zoom_tween.tween_method(_zoom_to, zoom_level, 1.0, 1.0).set_trans(Tween.TRANS_SINE)
 

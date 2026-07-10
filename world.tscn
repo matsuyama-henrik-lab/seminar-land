@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bo20i3l1ra21h" path="res://world.gd" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://km3q7fkj02jk" path="res://example_levels/level_cannon.tscn" id="2_cannon"]
-[ext_resource type="PackedScene" uid="uid://ccruurl17itbv" path="res://level_empty.tscn" id="2_empty"]
 [ext_resource type="PackedScene" uid="uid://n44bpdeuik0m" path="res://level_end.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://bnlor0v8ujw4f" path="res://example_levels/level_simple.tscn" id="4_26xuy"]
 [ext_resource type="Texture2D" uid="uid://bd8h0ox7364ms" path="res://menus/button_left.svg" id="4_036b0"]
 [ext_resource type="PackedScene" uid="uid://dn1hcmgj75wy7" path="res://level_title.tscn" id="4_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://0vkudly6yscy" path="res://example_levels/level_bee.tscn" id="4_k3n1d"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://d82x0750kgf1" path="res://example_levels/level_platform.tscn" id="9_udxuc"]
 [ext_resource type="PackedScene" uid="uid://dellqfte26po7" path="res://example_levels/level_gravity_flip.tscn" id="10_ikiii"]
 [ext_resource type="PackedScene" uid="uid://csqw7l381fih6" path="res://example_levels/level_timeout.tscn" id="11_cbp6q"]
-[ext_resource type="PackedScene" path="res://example_levels/level_example.tscn" id="12_26xuy"]
+[ext_resource type="PackedScene" uid="uid://b1w2b5d01adij" path="res://example_levels/level_example.tscn" id="12_26xuy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dwbse"]
 
@@ -53,8 +53,9 @@
 
 [node name="World" type="Node2D" unique_id=889401220]
 script = ExtResource("1_f3sb7")
-levels = Array[PackedScene]([ExtResource("2_empty"), ExtResource("5_2o6r5"), ExtResource("2_cannon"), ExtResource("4_k3n1d"), ExtResource("6_70uel"), ExtResource("7_hiqwa"), ExtResource("8_2u3nc"), ExtResource("9_udxuc"), ExtResource("10_ikiii"), ExtResource("11_cbp6q"), ExtResource("12_26xuy"), ExtResource("3_tlwt5")])
+levels = Array[PackedScene]([ExtResource("12_26xuy"), ExtResource("3_tlwt5")])
 exclude_from_level_select = Array[PackedScene]([ExtResource("3_tlwt5")])
+tutorial_levels = Array[PackedScene]([ExtResource("4_26xuy"), ExtResource("4_k3n1d"), ExtResource("2_cannon"), ExtResource("6_70uel"), ExtResource("7_hiqwa"), ExtResource("10_ikiii"), ExtResource("8_2u3nc"), ExtResource("9_udxuc"), ExtResource("5_2o6r5"), ExtResource("11_cbp6q")])
 background_scene = ExtResource("4_gbfbk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=502467376]
@@ -126,4 +127,7 @@ layer = 20
 visible = false
 
 [node name="LevelSelect" parent="MenuLayer" unique_id=1819614401 instance=ExtResource("9_lsel")]
+visible = false
+
+[node name="TutorialSelect" parent="MenuLayer" unique_id=1819614402 instance=ExtResource("9_lsel")]
 visible = false

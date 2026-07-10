@@ -41,6 +41,14 @@ text = "ステージ選択"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PlayAll" type="Button" parent="Content/Box" unique_id=47808154]
+visible = false
+custom_minimum_size = Vector2(720, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "順番にプレイ"
+
 [node name="Scroll" type="ScrollContainer" parent="Content/Box" unique_id=47808155]
 custom_minimum_size = Vector2(720, 480)
 layout_mode = 2
