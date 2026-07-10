@@ -50,6 +50,15 @@ body {
     }
   }
 
+  // Rouge wraps fenced code in
+  // <div class="highlighter-rouge"><div class="highlight"><pre>. Those wrappers
+  // keep a light background that peeked out at the rounded corners of the dark
+  // <pre>. Make them transparent so only the rounded <pre> shows.
+  .highlighter-rouge,
+  div.highlight {
+    background-color: transparent;
+  }
+
   // The 💡 tip boxes and other blockquotes
   blockquote {
     color: $text-dim;
