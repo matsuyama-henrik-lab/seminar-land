@@ -1,0 +1,103 @@
+---
+---
+
+// Import the base Cayman theme, then override its colours for a dark
+// (light text on a dark background) reading experience. Content is unchanged;
+// delete this file to return to the default light theme.
+@import "{{ site.theme }}";
+
+// --- Palette (GitHub-dark inspired) ---------------------------------------
+$bg:        #0d1117; // page background
+$bg-soft:   #161b22; // code blocks, table header, zebra rows
+$border:    #30363d; // borders and rules
+$text:      #c9d1d9; // body text
+$text-dim:  #8b949e; // muted text (footer, blockquote)
+$heading:   #e6edf3; // headings
+$link:      #58a6ff; // links
+
+// --- Page background and base text ----------------------------------------
+body {
+  background-color: $bg;
+  color: $text;
+}
+
+.main-content {
+  color: $text;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $heading;
+  }
+
+  a {
+    color: $link;
+  }
+
+  // Inline code
+  code {
+    background-color: rgba(110, 118, 129, 0.25);
+    color: $text;
+  }
+
+  // Fenced code blocks
+  pre {
+    background-color: $bg-soft;
+    border: solid 1px $border;
+    color: $text;
+
+    > code {
+      background-color: transparent;
+      color: inherit;
+    }
+  }
+
+  // The 💡 tip boxes and other blockquotes
+  blockquote {
+    color: $text-dim;
+    border-left-color: $border;
+  }
+
+  // Tables
+  table {
+    th, td {
+      border-color: $border;
+    }
+    th {
+      background-color: $bg-soft;
+      color: $heading;
+    }
+    tr {
+      background-color: $bg;
+      &:nth-child(2n) {
+        background-color: $bg-soft;
+      }
+    }
+  }
+
+  // Horizontal rules
+  hr {
+    background: $border;
+    background-image: none;
+  }
+}
+
+// --- Footer ---------------------------------------------------------------
+.site-footer {
+  border-top-color: $border;
+  color: $text-dim;
+}
+.site-footer-owner,
+.site-footer-credits {
+  color: $text-dim;
+}
+
+// --- Syntax highlighting (readable token colours on the dark blocks) ------
+.main-content .highlight {
+  .c, .c1, .cm, .cs { color: #8b949e; font-style: italic; } // comments
+  .k, .kd, .kn, .kc { color: #ff7b72; }                     // keywords
+  .s, .s1, .s2, .se { color: #a5d6ff; }                     // strings
+  .m, .mi, .mf       { color: #79c0ff; }                    // numbers
+  .nf, .fm           { color: #d2a8ff; }                    // function names
+  .nc, .nn           { color: #ffa657; }                    // class/module names
+  .o, .ow            { color: #ff7b72; }                    // operators
+  .nb, .bp           { color: #79c0ff; }                    // builtins
+}
