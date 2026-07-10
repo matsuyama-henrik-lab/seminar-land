@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cn8muofn8v6xv"]
 
 [ext_resource type="Script" uid="uid://bo20i3l1ra21h" path="res://world.gd" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://bvbrkob1nifq1" path="res://example_levels/level_example_easy.tscn" id="2_bc84e"]
 [ext_resource type="PackedScene" uid="uid://km3q7fkj02jk" path="res://example_levels/level_cannon.tscn" id="2_cannon"]
 [ext_resource type="PackedScene" uid="uid://n44bpdeuik0m" path="res://level_end.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://bnlor0v8ujw4f" path="res://example_levels/level_simple.tscn" id="4_26xuy"]
@@ -53,7 +54,7 @@
 
 [node name="World" type="Node2D" unique_id=889401220]
 script = ExtResource("1_f3sb7")
-levels = Array[PackedScene]([ExtResource("12_26xuy"), ExtResource("3_tlwt5")])
+levels = Array[PackedScene]([ExtResource("2_bc84e"), ExtResource("12_26xuy"), ExtResource("3_tlwt5")])
 exclude_from_level_select = Array[PackedScene]([ExtResource("3_tlwt5")])
 tutorial_levels = Array[PackedScene]([ExtResource("4_26xuy"), ExtResource("4_k3n1d"), ExtResource("2_cannon"), ExtResource("6_70uel"), ExtResource("7_hiqwa"), ExtResource("10_ikiii"), ExtResource("8_2u3nc"), ExtResource("9_udxuc"), ExtResource("5_2o6r5"), ExtResource("11_cbp6q")])
 background_scene = ExtResource("4_gbfbk")

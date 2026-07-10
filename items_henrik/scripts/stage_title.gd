@@ -13,7 +13,7 @@ class_name SingleInstanceTitleNode
 var t : float = 0;        # 演出の進み具合 / animation progress
 var state = 0             # 0:出る 1:待つ 2:消える / 0:appear 1:hold 2:disappear
 var duration = 1
-#var state = "appear"
+
 # 最初の1回だけ呼ばれる / called once when it enters the scene
 func _ready() -> void:
 	label.material.set_shader_parameter("t", 1)

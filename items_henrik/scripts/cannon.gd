@@ -65,17 +65,6 @@ func _ready() -> void:
 	queue_redraw()
 
 
-#func _process(_delta: float) -> void:
-	# In the editor, transform/property changes already trigger a redraw.
-	# The player's GRAVITY_SCALE can change without notifying us, so poll it
-	# (one float compare per frame) and redraw only when it actually changes.
-	#if not Engine.is_editor_hint():
-	#	return
-	#var gs := _gravity_scale()
-	#if gs != _last_gravity_scale:
-	#	_last_gravity_scale = gs
-	#	queue_redraw()
-
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
@@ -122,7 +111,6 @@ func _draw() -> void:
 		return
 
 	const gs = 1
-	#var gs := _gravity_scale()
 	# Normal gravity, then flipped gravity (as if GRAVITY_SCALE *= -1).
 	_draw_path(_simulate_path(-gs), preview_color_flipped)
 	_draw_path(_simulate_path(gs), preview_color)
@@ -159,12 +147,6 @@ func _gravity_vector() -> Vector2:
 	return dir * mag
 
 
-#func _gravity_scale() -> float:
-#	if player:
-#		return player.GRAVITY_SCALE
-#	return 1.0
-
-
 # 発射アニメが終わったら、実際にプレイヤーを飛ばす / when the shoot animation ends, actually launch the player
 func _on_sprite_2d_animation_finished() -> void:
 	if _sprite.animation == "shoot":
@@ -174,6 +156,5 @@ func _on_sprite_2d_animation_finished() -> void:
 		_particles.emitting = true
 		player.launch(launch_velocity(),preview_seconds)   # ballistic launch (see player.gd)
 		player.ignore_input  = false
-		#player.process_mode = Node.PROCESS_MODE_INHERIT
 		player.visible = true
 			
