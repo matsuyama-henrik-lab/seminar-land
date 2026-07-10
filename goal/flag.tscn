@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cujgkkkct465w"]
+
+[ext_resource type="Texture2D" uid="uid://b756uhh1y0yg7" path="res://goal/flag.svg" id="1_f41y8"]
+[ext_resource type="Script" uid="uid://5e58a7nxkcci" path="res://goal/flag.gd" id="1_kkt3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b4ue"]
+size = Vector2(31, 87)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkt3v"]
+atlas = ExtResource("1_f41y8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aol1d"]
+atlas = ExtResource("1_f41y8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehm8h"]
+atlas = ExtResource("1_f41y8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruxv3"]
+atlas = ExtResource("1_f41y8")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1tgx"]
+atlas = ExtResource("1_f41y8")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbv47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkt3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aol1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehm8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruxv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1tgx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="flag" type="Area2D" unique_id=1159964731 groups=["flag"]]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_kkt3v")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=205845672]
+position = Vector2(-4.5, -42.5)
+shape = SubResource("RectangleShape2D_0b4ue")
+debug_color = Color(0.48821598, 0.47186285, 0.8999555, 0.41960785)
+
+[node name="animation" type="AnimatedSprite2D" parent="." unique_id=1979136179]
+position = Vector2(30.5, -40.5)
+scale = Vector2(0.6953125, 0.6953125)
+sprite_frames = SubResource("SpriteFrames_fbv47")
+frame_progress = 0.94457036
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

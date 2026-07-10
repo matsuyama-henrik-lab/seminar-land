@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dr5k2m8oapqtx"]
+
+[ext_resource type="Script" uid="uid://bnmwhi4mth5at" path="res://items_henrik/scripts/timeout.gd" id="1_abc12"]
+
+[node name="timeout" type="Node" unique_id=1688929132]
+script = ExtResource("1_abc12")
+
+[node name="Timer" type="Timer" parent="." unique_id=2068483108]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=106528979]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=116496779]
+offset_right = 200.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 48
+text = "30"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

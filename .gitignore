@@ -1,0 +1,16 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Export config (kept local; may hold keystore credentials, and contains the
+# web/PWA head-include). The Godot editor manages this file.
+export_presets.cfg
+
+# Private local progress note (not for the public repo)
+/PROGRESS.local.md
+
+# Machine-local convenience symlink to the Godot editor binary
+/godot
+
+# Cross-machine handoff note for Claude (copied manually, never committed)
+/HANDOFF.local.md

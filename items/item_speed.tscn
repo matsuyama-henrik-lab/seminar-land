@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cxsunaibaxt0r"]
+
+[ext_resource type="Texture2D" uid="uid://dfmf1kyy04qm" path="res://items/test.png" id="1_0hbk4"]
+[ext_resource type="Script" uid="uid://i0y7wxy7sbmp" path="res://items/item_speed.gd" id="1_dr5pj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dr5pj"]
+radius = 26.305893
+
+[node name="ItemSpeed" type="Area2D" unique_id=713295558]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_dr5pj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1888247061]
+position = Vector2(2, -3)
+scale = Vector2(0.453125, 0.453125)
+texture = ExtResource("1_0hbk4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=224360986]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_dr5pj")
+debug_color = Color(0.78488225, 0.2517329, 0.87126446, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

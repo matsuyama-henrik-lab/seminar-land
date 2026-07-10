@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://byyt6qt4jep4d"]
+
+[ext_resource type="Texture2D" uid="uid://cj2gd2p8tqa7j" path="res://items_henrik/imgs/icon_Saw.svg" id="1_nelr2"]
+[ext_resource type="Script" uid="uid://d1sw4rnwfha23" path="res://items_henrik/scripts/garigari.gd" id="1_t06qv"]
+[ext_resource type="Texture2D" uid="uid://celuxo3mrjf22" path="res://items_henrik/imgs/icon_Saw2.svg" id="2_75tqx"]
+[ext_resource type="PackedScene" path="res://items_henrik/helper_scene/radius_gizmo.tscn" id="2_lf1f1"]
+[ext_resource type="Texture2D" uid="uid://d05wpph84sidr" path="res://items_henrik/imgs/icon_Smoke.svg" id="4_s1ou8"]
+
+[sub_resource type="Curve" id="Curve_lf1f1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.68445474, 0.6460128), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ek3es"]
+curve = SubResource("Curve_lf1f1")
+
+[sub_resource type="Curve" id="Curve_qu3kf"]
+_data = [Vector2(0.006960556, 0.27757716), 0.0, 0.0, 0, 0, Vector2(0.58468676, 0.107807755), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1wy5p"]
+curve = SubResource("Curve_qu3kf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jw1fh"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 72.979996
+initial_velocity_max = 196.5
+gravity = Vector3(0, 300, 0)
+scale_min = 0.099999994
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_1wy5p")
+alpha_curve = SubResource("CurveTexture_ek3es")
+hue_variation_min = 0.17999998
+hue_variation_max = 0.23999996
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75tqx"]
+radius = 115.03912
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qkq02"]
+radius = 30.066593
+
+[node name="Garigari" type="Area2D" unique_id=124715440]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_t06qv")
+
+[node name="RadiusGizmo" parent="." unique_id=507482932 node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_lf1f1")]
+collision_shape = NodePath("../Area2D/CollisionShape2D")
+fill_color = Color(0.55, 0.44, 0.9, 0.42)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=370953880]
+emitting = false
+amount = 15
+texture = ExtResource("4_s1ou8")
+one_shot = true
+explosiveness = 0.62
+process_material = SubResource("ParticleProcessMaterial_jw1fh")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1471823270]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1305321752]
+visible = false
+shape = SubResource("CircleShape2D_75tqx")
+debug_color = Color(0.4392157, 0.57254905, 0.5019608, 0.18039216)
+
+[node name="blade" type="Sprite2D" parent="." unique_id=298682711]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nelr2")
+
+[node name="face" type="Sprite2D" parent="." unique_id=1945189736]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_75tqx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=236213421]
+shape = SubResource("CircleShape2D_qkq02")
+debug_color = Color(0.5817647, 0.46056807, 0.7957661, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

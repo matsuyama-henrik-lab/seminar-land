@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bonb4ll5kr6c0"]
+
+[ext_resource type="Texture2D" uid="uid://bt08slm5rufkd" path="res://items_henrik/imgs/icon_Bee.svg" id="1_gdisf"]
+[ext_resource type="Script" uid="uid://bu4nwyg8r07un" path="res://items_henrik/scripts/bee.gd" id="1_o5yv0"]
+[ext_resource type="Shader" uid="uid://cdhosqmle8fwa" path="res://items_henrik/scripts/teki.gdshader" id="2_d52q5"]
+[ext_resource type="PackedScene" path="res://items_henrik/helper_scene/radius_gizmo.tscn" id="3_gizmo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdisf"]
+radius = 335.05374
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ef8kn"]
+resource_local_to_scene = true
+shader = ExtResource("2_d52q5")
+shader_parameter/hit_player = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5yv0"]
+atlas = ExtResource("1_gdisf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d52q5"]
+atlas = ExtResource("1_gdisf")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef8kn"]
+atlas = ExtResource("1_gdisf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiffx"]
+atlas = ExtResource("1_gdisf")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xkmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5yv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d52q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef8kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uiffx")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 50.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adsyb"]
+radius = 23.086792
+
+[node name="Bee_location" type="Area2D" unique_id=1673866677]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_o5yv0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=392133631]
+visible = false
+shape = SubResource("CircleShape2D_gdisf")
+debug_color = Color(0.62352943, 0.5137255, 0.42352942, 0.18039216)
+
+[node name="RadiusGizmo" parent="." unique_id=779076688 node_paths=PackedStringArray("collision_shape") instance=ExtResource("3_gizmo")]
+collision_shape = NodePath("../CollisionShape2D")
+fill_color = Color(0.55, 0.44, 0.9, 0.42)
+
+[node name="Bee" type="Area2D" parent="." unique_id=489302196]
+collision_layer = 0
+collision_mask = 4
+
+[node name="bee_animation" type="AnimatedSprite2D" parent="Bee" unique_id=1039581219]
+material = SubResource("ShaderMaterial_ef8kn")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5xkmh")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.83298075
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bee" unique_id=867796419]
+shape = SubResource("CircleShape2D_adsyb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Bee" to="." method="_on_bee_body_entered"]

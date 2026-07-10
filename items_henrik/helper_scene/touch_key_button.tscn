@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://3m0j4bano11i"]
+
+[ext_resource type="Script" uid="uid://bari2h60eliqq" path="res://items_henrik/scripts/touch_key_button.gd" id="1_tkb"]
+
+[node name="TouchKeyButton" type="CanvasLayer" unique_id=1581846913]
+script = ExtResource("1_tkb")

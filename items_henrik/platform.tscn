@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://be1v1burdbvns"]
+
+[ext_resource type="Texture2D" uid="uid://bt8p2jklmc8sc" path="res://items_henrik/imgs/platform.svg" id="1_xg81x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xg81x"]
+size = Vector2(128, 32)
+
+[node name="Platform" type="StaticBody2D" unique_id=60212643]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1769865610]
+texture = ExtResource("1_xg81x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=202762793]
+shape = SubResource("RectangleShape2D_xg81x")

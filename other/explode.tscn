@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cn4wyiff3syyq"]
+
+[ext_resource type="Texture2D" uid="uid://da0q1u4yricg2" path="res://other/circle.svg" id="1_bg2gc"]
+[ext_resource type="Script" uid="uid://bto0btktdv26u" path="res://other/explode.gd" id="2_rb8c2"]
+
+[sub_resource type="Curve" id="Curve_scale"]
+_data = [Vector2(0, 0.09449422), 0.0, 0.0, 0, 0, Vector2(0.55698925, 0.2243278), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_alpha"]
+offsets = PackedFloat32Array(0, 0.729, 0.98, 1)
+colors = PackedColorArray(1, 1, 1, 0.99, 1, 1, 1, 0.9, 1, 1, 1, 0.0645, 1, 1, 1, 0)
+
+[node name="explode" type="CPUParticles2D" unique_id=1050864214]
+emitting = false
+amount = 100
+texture = ExtResource("1_bg2gc")
+one_shot = true
+explosiveness = 0.97
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 127.85
+initial_velocity_max = 445.46
+orbit_velocity_min = -0.21899992
+orbit_velocity_max = 0.1630001
+tangential_accel_min = 77.63
+tangential_accel_max = 99.99999
+scale_amount_curve = SubResource("Curve_scale")
+color_ramp = SubResource("Gradient_alpha")
+script = ExtResource("2_rb8c2")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

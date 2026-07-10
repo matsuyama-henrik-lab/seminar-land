@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bchqyam1wyagi"]
+
+[ext_resource type="Script" uid="uid://cqgfqha5a2efp" path="res://items_henrik/scripts/spring.gd" id="1_hfv0l"]
+[ext_resource type="Texture2D" uid="uid://cus74ps5gdl0q" path="res://items_henrik/imgs/spring_default.svg" id="2_o6wti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suqby"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exiei"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2jsp"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b600f"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6wti"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o25x"]
+atlas = ExtResource("2_o6wti")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oi3di"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suqby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exiei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2jsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b600f")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_o6wti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o25x")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oi3di"]
+size = Vector2(36, 11)
+
+[node name="spring" type="Area2D" unique_id=1013732787]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_hfv0l")
+
+[node name="animation" type="AnimatedSprite2D" parent="." unique_id=433781221]
+position = Vector2(0.9999981, -32)
+scale = Vector2(0.4921875, 0.4921875)
+sprite_frames = SubResource("SpriteFrames_oi3di")
+animation = &"jump"
+frame = 5
+frame_progress = 1.0
+
+[node name="collision_shape" type="CollisionShape2D" parent="." unique_id=1286475741]
+position = Vector2(1, -7.5)
+shape = SubResource("RectangleShape2D_oi3di")
+debug_color = Color(0.53692347, 0.42476064, 0.965499, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

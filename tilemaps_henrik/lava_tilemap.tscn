@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://clgmhlcxmqf8q"]
+
+[ext_resource type="Shader" uid="uid://btoo5x6ox45ky" path="res://tilemaps_henrik/lava_tilemap.gdshader" id="1_spd10"]
+[ext_resource type="Texture2D" uid="uid://b4a1l53vpkrxj" path="res://tilemaps_henrik/tilemap_blank.svg" id="2_1wctv"]
+[ext_resource type="Script" uid="uid://bl7a2j33b3y6k" path="res://tilemaps_henrik/lava_tilemap.gd" id="3_5ldhh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_km5ld"]
+shader = ExtResource("1_spd10")
+shader_parameter/upside_down = false
+shader_parameter/centerblock = false
+shader_parameter/tile_px = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0decb"]
+shader = ExtResource("1_spd10")
+shader_parameter/upside_down = true
+shader_parameter/centerblock = false
+shader_parameter/tile_px = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4dj7"]
+shader = ExtResource("1_spd10")
+shader_parameter/upside_down = false
+shader_parameter/centerblock = true
+shader_parameter/tile_px = 128.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6hdu"]
+texture = ExtResource("2_1wctv")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/material = SubResource("ShaderMaterial_km5ld")
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:0/0/terrains_peering_bit/left_side = 0
+1:0/0 = 0
+1:0/0/material = SubResource("ShaderMaterial_0decb")
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0 = 0
+2:0/0/material = SubResource("ShaderMaterial_o4dj7")
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_left_corner = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:0/0/terrains_peering_bit/top_right_corner = 0
+
+[sub_resource type="TileSet" id="TileSet_f2txt"]
+tile_size = Vector2i(128, 128)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "lava"
+terrain_set_0/terrain_0/color = Color(0.6627451, 0.10980392, 0.09411765, 1)
+sources/0 = SubResource("TileSetAtlasSource_n6hdu")
+
+[node name="lava_tilemap" type="TileMapLayer" unique_id=981754539]
+z_index = 1
+z_as_relative = false
+tile_set = SubResource("TileSet_f2txt")
+script = ExtResource("3_5ldhh")

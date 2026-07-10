@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://clkpm4jnbogpd"]
+
+[ext_resource type="Script" uid="uid://dfqdeafrkvkpu" path="res://menus/main_menu.gd" id="1"]
+
+[node name="MainMenu" type="Control" unique_id=1733250829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=997381397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2)
+
+[node name="Content" type="CenterContainer" parent="." unique_id=1678639630]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="Content" unique_id=588457026]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Title" type="Label" parent="Content/Box" unique_id=1823045782]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start" type="Button" parent="Content/Box" unique_id=572103502]
+custom_minimum_size = Vector2(680, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "スタート"
+
+[node name="Select" type="Button" parent="Content/Box" unique_id=653060762]
+custom_minimum_size = Vector2(680, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "ステージ選択"
+
+[node name="subtitle" type="Label" parent="Content/Box" unique_id=2027185337]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "松山大学　情報学部　２０２６"
+horizontal_alignment = 1
+vertical_alignment = 1

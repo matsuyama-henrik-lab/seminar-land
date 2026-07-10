@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bt200msgjcbxp"]
+
+[ext_resource type="Script" uid="uid://b8svlui6ckn23" path="res://items_henrik/scripts/key_counter.gd" id="1_t1hr7"]
+[ext_resource type="Texture2D" uid="uid://cwcnbukb0khik" path="res://items_henrik/imgs/icon_Keys.svg" id="2_do8mx"]
+
+[node name="key_counter" type="Node" unique_id=1688929132]
+script = ExtResource("1_t1hr7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=106528979]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1245126894]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_bottom = 67.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=1884189360]
+layout_mode = 2
+texture = ExtResource("2_do8mx")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer" unique_id=116496779]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "0/0"
+horizontal_alignment = 1

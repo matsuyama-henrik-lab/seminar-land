@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b1jh3dp7vn6uk"]
+
+[ext_resource type="Script" uid="uid://ce2hfcb58ls8b" path="res://items_henrik/scripts/stage_title.gd" id="1_kvnct"]
+[ext_resource type="Shader" uid="uid://bqx4ib2dahf7y" path="res://items_henrik/scripts/stage_title.gdshader" id="2_i1v40"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qiwp4"]
+shader = ExtResource("2_i1v40")
+shader_parameter/t = 0.96800004272012
+
+[node name="StageTitle" type="CanvasLayer" unique_id=108569657]
+script = ExtResource("1_kvnct")
+
+[node name="Control" type="Control" parent="." unique_id=391663821]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Node2D" type="Node2D" parent="Control" unique_id=242745921]
+
+[node name="Label" type="Label" parent="Control/Node2D" unique_id=1775208034]
+material = SubResource("ShaderMaterial_qiwp4")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.5
+offset_right = 159.5
+offset_bottom = 94.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1

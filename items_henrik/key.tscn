@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bewj82tertfhi"]
+
+[ext_resource type="Script" uid="uid://c2cyrdow2mo50" path="res://items_henrik/scripts/key.gd" id="1_7ol1j"]
+[ext_resource type="Texture2D" uid="uid://cqaufdj1o0c2w" path="res://items_henrik/imgs/icon_Key.svg" id="1_8yp6k"]
+[ext_resource type="Shader" uid="uid://brjv34bqjfyb7" path="res://items_henrik/scripts/key.gdshader" id="2_igdel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yp6k"]
+size = Vector2(71, 130)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ygvh"]
+shader = ExtResource("2_igdel")
+
+[node name="Key" type="Area2D" unique_id=1035558599]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_7ol1j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=455533338]
+position = Vector2(-0.5, -1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_8yp6k")
+debug_color = Color(0.6441695, 0.39158234, 0.8841579, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=742787317]
+material = SubResource("ShaderMaterial_1ygvh")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_8yp6k")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

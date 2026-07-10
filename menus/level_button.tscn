@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d2i6pv0lrkxvb"]
+
+[node name="LevelButton" type="Button" unique_id=1880745554]
+custom_minimum_size = Vector2(680, 96)
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "レベル"
