@@ -197,7 +197,7 @@ func _on_body_entered(body: Node2D) -> void:
 ### ほぼコードなしの改造アイデア
 
 - `SPEED_BONUS` の数字を変える → 速くなる量が変わる
-- `body.SPEED` を `body.JUMP_VELOCITY` にする → ジャンプ力アップ（マイナスを足す）
+- `body.SPEED += SPEED_BONUS` を `body.JUMP_VELOCITY -= SPEED_BONUS` にする → ジャンプ力アップ（`JUMP_VELOCITY` はマイナスが上向きなので、**引く**ほど高く跳ぶ）
 - `body.GRAVITY_SCALE` を変える → 軽い／重いアイテム
 - `body.scale` を変える → 小さく／大きくなるアイテム
 
