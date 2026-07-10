@@ -107,45 +107,62 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 # --- 軌道プレビュー / Trajectory preview -------------------------------------
-# エディタ上で飛ぶ道すじを線で描くための部分。ゲームの動きには影響しません。
-# Draws the flight path as a line in the editor; does not affect gameplay.
+# これは「補助線」を描くための部分です。ゲームの動きには影響しません。
+# 発射の速さ（launch_speed）や向き（大砲の回転）を調整するときに、
+# プレイヤーがどこへ飛ぶかを線で見せてくれるので、数字を目で見ながら
+# ぴったり合わせられます。エディタ上（と、お好みでゲーム中）に表示します。
+# This is an auxiliary helper that draws guide lines; it does NOT affect
+# gameplay. When you tune the launch speed and aim (the cannon's rotation), it
+# shows where the player will fly, so you can adjust the numbers with visual
+# feedback. Shown in the editor (and, if you like, at runtime).
 
 func _draw() -> void:
+	# show_in_editor / show_at_runtime のどちらかがオンのときだけ描く。
+	# Draw only when show_in_editor / show_at_runtime says so.
 	var enabled := show_in_editor if Engine.is_editor_hint() else show_at_runtime
 	if not enabled:
 		return
 
 	const gs = 1
-	# Normal gravity, then flipped gravity (as if GRAVITY_SCALE *= -1).
+	# 線を2本描きます：ふつうの重力のときと、重力が反転したとき（GRAVITY_SCALE × -1）。
+	# 「重力反転」アイテムを取ると重力が逆になるので、両方の飛び方を同時に確認できます。
+	# Two lines are drawn: one for normal gravity, one for flipped gravity
+	# (GRAVITY_SCALE * -1). The gravity-flip item reverses gravity, so this lets
+	# you see BOTH possible flight paths at once.
 	_draw_path(_simulate_path(-gs), preview_color_flipped)
 	_draw_path(_simulate_path(gs), preview_color)
 
 
 func _draw_path(points: PackedVector2Array, color: Color) -> void:
+	# 点をつないで線にする / connect the points into a line
 	if points.size() >= 2:
 		draw_polyline(points, color, 2.0, true)
-	# End marker where the player would be after preview_seconds.
+	# preview_seconds 後にプレイヤーがいる場所に、終点の丸を描く。
+	# A dot marks where the player would be after preview_seconds.
 	if not points.is_empty():
 		draw_circle(points[points.size() - 1], 6.0, color)
 
 
-## Reproduces the player's fixed-step Euler integration, so the drawn path
-## matches the real flight exactly (velocity is updated, then position).
+## プレイヤーと同じ計算方法（1コマずつ速度→位置の順に更新）で飛び方を再現するので、
+## 描いた線が本物の飛行とぴったり一致します。
+## Reproduces the player's fixed-step integration (update velocity, then
+## position, each frame) so the drawn line matches the real flight exactly.
 func _simulate_path(gravity_scale: float) -> PackedVector2Array:
 	var pts := PackedVector2Array()
-	var step := 1.0 / float(Engine.get_physics_ticks_per_second())
+	var step := 1.0 / float(Engine.get_physics_ticks_per_second())   # 1コマの時間 / one frame's duration
 	var gravity := _gravity_vector() * gravity_scale
 	var vel := launch_velocity()
-	var pos := muzzle_position()   # start where the player is actually placed
+	var pos := muzzle_position()   # 実際にプレイヤーが置かれる場所から始める / start where the player is placed
 	var t := 0.0
 	while t < preview_seconds:
-		pts.append(to_local(pos))   # draw in the cannon's local space
-		vel += gravity * step
-		pos += vel * step
+		pts.append(to_local(pos))   # 大砲を基準にした座標で描く / draw in the cannon's local space
+		vel += gravity * step       # 重力で速度を更新 / update speed with gravity
+		pos += vel * step           # 速度で位置を更新 / update position with speed
 		t += step
 	return pts
 
 
+# プロジェクト設定から重力の強さと向きを読み取る / read gravity strength and direction from Project Settings
 func _gravity_vector() -> Vector2:
 	var mag: float = ProjectSettings.get_setting("physics/2d/default_gravity", 980.0)
 	var dir: Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector", Vector2.DOWN)
