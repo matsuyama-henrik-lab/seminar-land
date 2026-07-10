@@ -4,7 +4,7 @@ class_name SingleInstanceTimerNode
 # 残り秒数を画面に表示し、0になるとプレイヤーが死にます（ステージに緊張感を出す追加要素）。
 # Shows the remaining seconds on screen; when it hits 0 the player dies.
 # 1つのステージに1個だけ（重複は自動で消えます）。
-# Only one per stage — a duplicate removes itself automatically.
+# Only one per stage; a duplicate removes itself automatically.
 
 @export var time_limit: float = 30.0   # 制限時間（秒）/ time limit in seconds
 @onready var timer: Timer = $Timer

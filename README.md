@@ -3,7 +3,7 @@
 A tiny, beginner-friendly 2D platformer made with **Godot**, used in a
 university *foundation seminar* (基礎セミナー). It is designed so that a complete
 beginner can build their own stage (ステージ) and, if they like, write their first
-few lines of code — **without ever editing the engine code** (`world.gd` /
+few lines of code, **without ever editing the engine code** (`world.gd` /
 `player.gd`).
 
 **Godot** で作った、小さな初心者向け 2D プラットフォーマーです。大学の
@@ -28,14 +28,14 @@ Once published, it is served from `https://<user>.github.io/<repo>/`.）
 
 ## 🚀 Quick start / クイックスタート
 
-1. **Install Godot** — download the editor from <https://godotengine.org/download>
+1. **Install Godot**: download the editor from <https://godotengine.org/download>
    (see the tested version above). （Godot のエディタをダウンロードします。）
-2. **Open the project** — start Godot, click *Import*, and choose the
+2. **Open the project**: start Godot, click *Import*, and choose the
    `project.godot` file in this folder.
    （Godot を起動し *Import* からこのフォルダの `project.godot` を開きます。）
-3. **Play** — press **F5** (or the ▶ button). Use ← → to move and **Space** to jump.
+3. **Play**: press **F5** (or the ▶ button). Use ← → to move and **Space** to jump.
    （**F5** で実行。← → で移動、**スペース**でジャンプ。）
-4. **Make your own stage** — copy `level_empty.tscn`, then register it in the
+4. **Make your own stage**: copy `level_empty.tscn`, then register it in the
    `levels` list on `world.tscn`. See the tutorial for details.
    （`level_empty.tscn` をコピーして自分のステージを作り、`world.tscn` の
    `levels` に登録します。詳しくはチュートリアルへ。）
@@ -49,9 +49,9 @@ Once published, it is served from `https://<user>.github.io/<repo>/`.）
 | `world.gd` / `world.tscn` | The game shell: menus, level list, buttons. ゲーム本体（メニュー・ステージ一覧）。**Usually you don't edit this.** |
 | `player/` | The player character (`player.gd`, sprites). プレイヤー。 |
 | `goal/` | The goal flag (`flag.tscn`). ゴールの旗。 |
-| `level_empty.tscn` | **The stage template** — already has a player + flag. コピー元のステージ。 |
+| `level_empty.tscn` | **The stage template**: already has a player + flag. コピー元のステージ。 |
 | `level_cannon.tscn`, `level_title.tscn`, `level_end.tscn` | Demo stages. お手本のステージ。 |
-| `items/` | **Beginner coding examples** — simple add-in items. かんたんな自作アイテムの例。 |
+| `items/` | **Beginner coding examples**: simple add-in items. かんたんな自作アイテムの例。 |
 | `items_henrik/` | Ready-made items (spring, cannon, bee, key, saw, …). 完成品のアイテム集。 |
 | `tilemaps_henrik/`, `tilemap_imgs/` | Tilesets for building ground (incl. lava). 地面を描くタイルセット。 |
 | `menus/`, `global/`, `other/`, `goal/` | Supporting scenes & scripts. 補助的な部品。 |
@@ -62,7 +62,7 @@ Once published, it is served from `https://<user>.github.io/<repo>/`.）
 
 Every item is a **self-contained `Area2D`** that reacts to the player in
 `_on_body_entered(body)`. It touches the player *only* through the player's
-exported variables and signals — so items never edit `player.gd` or `world.gd`:
+exported variables and signals, so items never edit `player.gd` or `world.gd`:
 
 すべてのアイテムは独立した **`Area2D`** で、`_on_body_entered(body)` の中で
 プレイヤーに反応します。プレイヤーの**公開変数**と**シグナル**だけを通して
@@ -85,16 +85,45 @@ examples. （くわしい例は `items/` の中にあります。）
 
 ---
 
+## 🤖 AI assistance / AI（コーディング支援）について
+
+The game, including its design, mechanics and art, is by the author above, who
+wrote the gameplay code (including the ready-made items such as the spring,
+cannon, bee, saw, key and gravity-flip) and reviewed and tested all of the code.
+Part of the code was written with the help of an AI coding assistant
+(**Anthropic's Claude**, via *Claude Code*). The author provided the structure
+and directed the work, and the assistant wrote much of the detailed
+implementation inside `world.gd` (around that structure), the on-screen touch
+keyboard (`items_henrik/scripts/touch_key_button.gd`), and much of the bilingual
+in-code documentation.
+
+このゲームの設計・仕組み・アートは、上記の作者によるものです。作者自身がゲームの
+コード（バネ・大砲・ハチ・のこぎり・カギ・重力反転などの完成品アイテムを含む）を
+書き、すべてのコードをレビューして動作を確認しています。コードの一部は、AIコー
+ディング支援ツール（**Anthropic の Claude**／*Claude Code*）の助けを借りて書きました。
+作者が骨組みを用意して方針を決め、`world.gd` の細かい実装の多く、画面上のタッチ
+キーボード（`items_henrik/scripts/touch_key_button.gd`）、日英併記のコード内ドキュ
+メントの多くを、このツールが担当しました。
+
+> Knowing how to code still matters. It is what lets you design the structure,
+> direct an assistant, and judge and fix what it produces. AI is a tool, not a
+> substitute for understanding.
+> （コードが書ける・読めることは今も大切です。骨組みを設計し、AIに指示を出し、
+> 出てきたコードを見極めて直せるのは、その力があるからこそです。AIは道具であって、
+> 「理解していること」の代わりにはなりません。）
+
+---
+
 ## 📝 License / ライセンス
 
 Copyright © 2026 Henrik Skibbe (Matsuyama University / 松山大学).
 
-Except where noted below, this project — the game code, art, tilemaps and
-documentation — is licensed under the
+Except where noted below, this project (the game code, art, tilemaps and
+documentation) is licensed under the
 **[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/)**
 (**CC BY-NC-SA 4.0**) license. See the [`LICENSE`](LICENSE) file for the full text.
 
-In short — あなたは次のことができます：
+In short, あなたは次のことができます：
 
 - ✅ **Share / 共有**：コピー・再配布できます。
 - ✅ **Adapt / 改変**：改造・翻案できます（授業や学習にどうぞ）。
@@ -111,6 +140,6 @@ In short — あなたは次のことができます：
 
 **Third-party components / 同梱の第三者コンポーネント（上記の対象外）:**
 
-- Font: **Noto Sans JP** — SIL Open Font License (see [`OFL.txt`](OFL.txt)).
+- Font: **Noto Sans JP** (SIL Open Font License, see [`OFL.txt`](OFL.txt)).
   Remains under the OFL; not relicensed by the above.
 - The **Godot Engine** itself is not included here and is under its own MIT license.

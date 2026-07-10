@@ -13,7 +13,7 @@ this project (it can hold machine-specific data such as Android keystore
 credentials, and the Godot editor rewrites it). Because it is not in git, the
 update snippet would be lost on a fresh clone or another machine.
 
-So we keep the real source here — [`godot_pwa_update.js`](godot_pwa_update.js) —
+So we keep the real source here, [`godot_pwa_update.js`](godot_pwa_update.js),
 tracked in git, plus these instructions for re-applying it anywhere.
 
 ## What problem it solves
@@ -41,12 +41,12 @@ detects a new worker automatically.
 Our snippet just connects those two facts:
 
 1. It hooks Godot's **existing** service-worker registration (it does **not**
-   register its own — Godot does that during `startGame()`).
+   register its own; Godot does that during `startGame()`).
 2. When it sees that a newer worker has finished downloading, it posts the
    `'update'` message, which triggers the skip-waiting + reload above.
 3. It also calls `registration.update()` on an interval, because browsers
-   otherwise only check for a new worker on a full page navigation — a long play
-   session would never notice a fresh deploy.
+   otherwise only check for a new worker on a full page navigation, so a long
+   play session would never notice a fresh deploy.
 
 ### Behaviour summary
 
@@ -65,12 +65,12 @@ You only need to do this if `export_presets.cfg` on that machine does **not**
 already contain the snippet in its Web preset's Head Include.
 
 > **Gotcha:** the Head Include must never contain a literal closing script-tag
-> sequence — not even inside a JS comment or string. The HTML parser ends the
+> sequence, not even inside a JS comment or string. The HTML parser ends the
 > `<script>` block at the first one it sees, dumping the rest of the code onto
 > the page as visible text and stopping it from running. `godot_pwa_update.js`
 > is written to avoid this; keep it that way if you edit it.
 
-### Option A — Godot editor (recommended, easiest)
+### Option A: Godot editor (recommended, easiest)
 
 1. Open the project in Godot.
 2. **Project → Export…**
@@ -93,7 +93,7 @@ already contain the snippet in its Web preset's Head Include.
 > Include ends up empty again. Option B below is only safe with the editor
 > **closed**.
 
-### Option B — edit `export_presets.cfg` directly (editor must be closed)
+### Option B: edit `export_presets.cfg` directly (editor must be closed)
 
 Under the Web preset (the `[preset.N.options]` block whose preset has
 `platform="Web"`), set `html/head_include` to the `<script>…</script>` block.
@@ -121,10 +121,10 @@ never contains a `"` that would prematurely end the `.cfg` string.
 
 ## Options you can tweak (in `godot_pwa_update.js`, then re-apply)
 
-- `AUTO_RELOAD` — `true` (default) reloads the page automatically when an update
+- `AUTO_RELOAD`: `true` (default) reloads the page automatically when an update
   is ready. Set to `false` to only `console.log` instead, so you can show your
   own "new version available" prompt / button and trigger the reload on click.
-- `UPDATE_CHECK_INTERVAL` — how often (ms) to poll the server for a new build
+- `UPDATE_CHECK_INTERVAL`: how often (ms) to poll the server for a new build
   during a session. Default is 60 000 (1 minute).
 
 ## If you change the snippet

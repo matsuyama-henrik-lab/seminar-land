@@ -4,7 +4,7 @@ class_name SingleInstanceTitleNode
 # ステージ開始時にタイトルをふわっと出して、少ししたら消えます。
 # Fades the stage title in at the start, holds, then fades it out.
 # 1つのステージに1個だけ（同じものが2つあると重複を自動で消します）。
-# Only one per stage — a duplicate removes itself automatically.
+# Only one per stage; a duplicate removes itself automatically.
 
 @onready var label: Label = $Control/Node2D/Label
 

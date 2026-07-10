@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-# 半径ギズモ（エディタ専用の飾り）/ Radius gizmo — an editor-only helper.
+# 半径ギズモ（エディタ専用の飾り）/ Radius gizmo, an editor-only helper.
 # 当たり判定の円を、エディタ上で見えるように描くだけの道具。ゲーム中は何もしません。
 # Just draws the collision circle so you can see it while editing. Does nothing at runtime.
 

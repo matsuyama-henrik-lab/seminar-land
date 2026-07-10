@@ -4,7 +4,7 @@ extends Node2D
 # Handles the menus, loading/switching stages, the lava background, and touch controls.
 # ★ 自分のステージを追加するには、このスクリプトではなく、下の levels 配列に
 #    シーンを足すだけでOK（インスペクターから）。ここは基本さわりません。
-# ★ To add your own stage you do NOT edit this script — just add your scene to the
+# ★ To add your own stage you do NOT edit this script, just add your scene to the
 #    `levels` array below (via the Inspector). You normally never touch this file.
 # （以下の英語コメントは仕組みの詳しい説明です。/ The English notes below explain the internals.）
 
@@ -39,7 +39,7 @@ var _single_level: bool = false
 # The menus are editable scenes instanced under MenuLayer in world.tscn. World
 # only fills the level list, reacts to their signals, and toggles visibility.
 # Touch-to-mouse emulation is off (so the multitouch game controls work), which
-# means the menu's Control buttons don't get touch on their own — we hit-test
+# means the menu's Control buttons don't get touch on their own; we hit-test
 # them by hand in _handle_menu_touch, just like the on-screen game buttons.
 @onready var _main_menu: Control = $MenuLayer/MainMenu
 @onready var _level_select: Control = $MenuLayer/LevelSelect
@@ -80,7 +80,7 @@ func _setup_buttons() -> void:
 	for btn in _touch_buttons:
 		# Buttons must never hold keyboard focus (ui_accept also activates a
 		# focused button), and we hit-test pointers ourselves for true
-		# multitouch, so the buttons shouldn't consume pointer events — a
+		# multitouch, so the buttons shouldn't consume pointer events; a
 		# Control only tracks one pointer, which is exactly the limitation
 		# that stops two buttons being held at once.
 		btn.focus_mode = Control.FOCUS_NONE
@@ -436,7 +436,7 @@ func _process(_delta: float) -> void:
 	if camera:
 		# Use the smoothing-aware screen center, not global_position. With
 		# position_smoothing_enabled the frame is rendered from the smoothed
-		# camera transform, but global_position is the (instant) target — feeding
+		# camera transform, but global_position is the (instant) target; feeding
 		# that here makes the lava lead the world while the camera catches up.
 		# get_screen_center_position() reflects what is actually on screen
 		# (smoothing, drag, limits), so the lava tracks the world exactly.

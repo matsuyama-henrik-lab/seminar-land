@@ -78,7 +78,7 @@ func _notification(what: int) -> void:
 
 # --- 発射のしくみ / Shooting ------------------------------------------------
 # ここから下は大砲の内部の計算です。ふつうは変更しません。
-# The rest of the file is the cannon's internal maths — you normally don't edit it.
+# The rest of the file is the cannon's internal maths that you normally don't edit.
 
 ## 大砲が狙っている向き（長さ1のベクトル）/ the cannon's aim as a unit vector.
 func aim_direction() -> Vector2:

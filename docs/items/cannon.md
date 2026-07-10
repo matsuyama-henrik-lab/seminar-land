@@ -29,7 +29,7 @@
 | `show_in_editor` | エディタで道すじの線を表示する。 | オン |
 | `show_at_runtime` | ゲーム中にも線を表示する。 | オフ |
 | `preview_seconds` | 何秒ぶんの道すじを描く／飛ぶか。 | `2.0` |
-| `preview_color` / `preview_color_flipped` | 線の色（重力反転時の色）。 | — |
+| `preview_color` / `preview_color_flipped` | 線の色（重力反転時の色）。 | なし |
 
 > 💡 向きは**ノードの回転**で決めます。プレビュー線を見ながら、着地させたい
 > 足場に合うように角度と `launch_speed` を調整しましょう。

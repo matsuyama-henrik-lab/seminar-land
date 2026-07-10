@@ -7,7 +7,7 @@ extends CharacterBody2D
 #    このスクリプトを書き変えなくても、アイテム側から性能を変えられます。
 # ★ Items (add-ins) touch the player only through the exports below
 #    (SPEED / JUMP_VELOCITY / GRAVITY_SCALE / scale) and the signals
-#    (died / level_complete) — so an item can change the player WITHOUT
+#    (died / level_complete), so an item can change the player WITHOUT
 #    editing this script.
 
 @onready var camera: Camera2D = $Camera
@@ -121,7 +121,7 @@ func _physics_process(delta: float) -> void:
 #   in Q3 and Q4 with the correct choice from A–H.
 # ─────────────────────────────────────────────────────────────────────────
 func _physics_process__(delta: float) -> void:
-	# 選択肢 / All choices — use these names as your answers:
+	# 選択肢 / All choices, use these names as your answers:
 	var A = is_on_floor()       # 地面にいる？       (on the ground)
 	var B = not is_on_floor()   # 空中にいる？       (in the air)
 	var C = true
