@@ -8,59 +8,64 @@ extends Area2D
 # ＠tool: エディタ上でも動き、発射の軌道を線でプレビュー表示します。
 # @tool: also runs in the editor to draw a preview of the flight path.
 
-## The player that gets launched. Assign it in the level (NodePath to ../player).
-#@export var player: CharacterBody2D
-
+# 発射されるプレイヤー。ぶつかった相手を自動でおぼえます。
+# The player that gets launched (remembered automatically on contact).
 var player: CharacterBody2D
 
-## Launch speed in pixels/second, along the cannon's "up" direction.
-## Rotate the Cannon node to aim; rotation 0 shoots straight up.
+## 発射の速さ（ピクセル/秒）。大砲の「上」向きに飛ばします。
+## 大砲ノードを回すと向きが変わります（回転0で真上）。
+## Launch speed (px/s) along the cannon's "up". Rotate the node to aim (0 = up).
 @export_range(0.0, 3000.0, 10.0, "or_greater") var launch_speed: float = 900.0:
 	set(value):
 		launch_speed = value
 		queue_redraw()
 
-## How far ahead of the cannon (along the aim) the player starts, so it sits
-## on the drawn trajectory and out of the barrel instead of where it touched.
+## プレイヤーを砲口から少し前に出す距離。ぶつかった場所ではなく、
+## 描かれた軌道の上（砲身の外）からスタートさせます。
+## How far ahead of the barrel the player starts, so it sits on the drawn path.
 @export_range(0.0, 256.0, 1.0, "or_greater") var muzzle_offset: float = 64.0:
 	set(value):
 		muzzle_offset = value
 		queue_redraw()
 
 @export_group("Trajectory preview")
-## Draw the predicted path while editing.
+## 編集中に、飛んでいく予想ライン（軌道）を表示します。
+## Draw the predicted flight path while editing.
 @export var show_in_editor: bool = true:
 	set(value):
 		show_in_editor = value
 		queue_redraw()
+## ゲーム中にも軌道を表示します（動作確認に便利）。
 ## Also draw it while the game runs (handy for debugging).
 @export var show_at_runtime: bool = false:
 	set(value):
 		show_at_runtime = value
 		queue_redraw()
+## 軌道を何秒ぶん描くか。
 ## How many seconds of flight to draw.
-
 @export_range(0.0, 10.0, 0.01, "or_greater")  var preview_seconds: float = 2.0:
 	set(value):
 		preview_seconds = value
 		queue_redraw()
+## 軌道ラインの色。
+## Colour of the trajectory line.
 @export var preview_color: Color = Color(1.0, 0.9, 0.2, 0.85)
+## 重力が反転しているとき（GRAVITY_SCALE × -1）に描くもう1本の色。
 ## Second path drawn with flipped gravity (GRAVITY_SCALE * -1).
 @export var preview_color_flipped: Color = Color(1.0, 0.3, 0.25, 0.85)
 
 @onready var _sprite: AnimatedSprite2D = $Sprite2D
 @onready var _fire_sprite: AnimatedSprite2D = $Sprite2D2
+# 型をあえて書いていません（Web版では GPUParticles2D が CPUParticles2D に
+# 差し替わるため）。どちらも restart()/emitting を持つので型なしで安全です。
 # Untyped on purpose: on web export the GPUParticles2D node is swapped for a
 # CPUParticles2D before the level loads, so a static GPUParticles2D type here
 # would fail to assign. restart()/emitting exist on both, so untyped is safe.
 @onready var _particles = $GPUParticles2D
 
-# Last gravity scale we drew with; NAN forces a redraw on the first frame.
-#var _last_gravity_scale := NAN
-
 
 func _ready() -> void:
-	# Redraw automatically when the node is moved or rotated in the editor.
+	# エディタで大砲を動かす・回すたびに軌道を描き直す / redraw when moved or rotated in the editor
 	set_notify_transform(true)
 	queue_redraw()
 
@@ -71,19 +76,21 @@ func _notification(what: int) -> void:
 		queue_redraw()
 
 
-# --- Shooting -------------------------------------------------------------
+# --- 発射のしくみ / Shooting ------------------------------------------------
+# ここから下は大砲の内部の計算です。ふつうは変更しません。
+# The rest of the file is the cannon's internal maths — you normally don't edit it.
 
-## Unit vector of the cannon's aim in world space.
+## 大砲が狙っている向き（長さ1のベクトル）/ the cannon's aim as a unit vector.
 func aim_direction() -> Vector2:
 	return Vector2.UP.rotated(global_rotation)
 
 
-## World-space initial velocity the player will receive.
+## プレイヤーに与える最初の速度 / the initial velocity the player receives.
 func launch_velocity() -> Vector2:
 	return aim_direction() * launch_speed
 
 
-## Where the player is placed at launch: on the trajectory, a bit up the barrel.
+## 発射時にプレイヤーを置く位置（砲身の少し先）/ where the player starts, up the barrel.
 func muzzle_position() -> Vector2:
 	return global_position + aim_direction() * muzzle_offset
 
@@ -93,17 +100,15 @@ func _on_body_entered(body: Node2D) -> void:
 	if Engine.is_editor_hint():
 		return
 	player = body
-		#body.process_mode = Node.PROCESS_MODE_DISABLED
-	player.ignore_input = true
-	player.visible = false
-	player.global_position = muzzle_position()   # snap onto the trajectory
+	player.ignore_input = true                    # 操作を一時とめる / freeze player input
+	player.visible = false                        # 発射アニメの間は隠す / hide during the shoot anim
+	player.global_position = muzzle_position()    # 軌道の上にそろえる / snap onto the trajectory
 	_sprite.play("shoot")
-			
-			
-			
 
 
-# --- Trajectory preview ---------------------------------------------------
+# --- 軌道プレビュー / Trajectory preview -------------------------------------
+# エディタ上で飛ぶ道すじを線で描くための部分。ゲームの動きには影響しません。
+# Draws the flight path as a line in the editor; does not affect gameplay.
 
 func _draw() -> void:
 	var enabled := show_in_editor if Engine.is_editor_hint() else show_at_runtime
@@ -157,4 +162,3 @@ func _on_sprite_2d_animation_finished() -> void:
 		player.launch(launch_velocity(),preview_seconds)   # ballistic launch (see player.gd)
 		player.ignore_input  = false
 		player.visible = true
-			

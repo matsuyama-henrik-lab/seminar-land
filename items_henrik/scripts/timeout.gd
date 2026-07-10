@@ -12,15 +12,18 @@ class_name SingleInstanceTimerNode
 
 
 
+# ステージに置かれた瞬間に呼ばれる。タイマーが2個以上ないか確かめます。
+# Called the moment it is placed in the stage; makes sure there is only one timer.
 func _enter_tree() -> void:
-	# Find all active nodes of this specific class type
+	# すでにタイマーがあるか探す / look for a timer that already exists
 	var duplicates: Array[Node] = get_tree().get_nodes_in_group(&"single_instance_timer_nodes")
-	
+
 	if duplicates.size() > 0:
+		# もう1個ある → この重複を消す / one already exists → remove this duplicate
 		push_warning("Only one instance of %s is allowed! Removing duplicate." % name)
-		queue_free() # Safely remove the duplicate from memory
+		queue_free()
 	else:
-		# Register this first valid instance into the tracking group
+		# 最初の1個として登録する / register this as the first (and only) one
 		add_to_group(&"single_instance_timer_nodes")
 
 

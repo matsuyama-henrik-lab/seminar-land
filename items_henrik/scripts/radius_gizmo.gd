@@ -15,19 +15,21 @@ extends Node2D
 ##
 ## Has no effect at runtime: it only draws while the editor is open.
 
+## 円を描いて見せたい当たり判定（CollisionShape2D）。半径と位置は自動で読み取ります。
 ## The shape to visualize. Its radius (and position) are read automatically.
 @export var collision_shape: CollisionShape2D:
 	set(value):
 		collision_shape = value
 		queue_redraw()
 
+## オンのとき、下の fill_color ではなく当たり判定自身の debug_color を使います。
 ## When true, match the shape's own debug_color instead of fill_color below.
 @export var use_debug_color: bool = true
 
-## Used when use_debug_color is false.
+## use_debug_color がオフのときに使う色。/ Used when use_debug_color is false.
 @export var fill_color: Color = Color(0.596, 0.538, 0.218, 0.42)
 
-## Draw a crisp outline on top of the fill.
+## 塗りの上にくっきりした輪郭線を描きます。/ Draw a crisp outline on top of the fill.
 @export var draw_outline: bool = true
 
 

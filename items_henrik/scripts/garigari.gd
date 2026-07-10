@@ -2,6 +2,7 @@ extends Area2D
 # ガリガリ（回転のこぎり）/ A spinning saw-blade hazard.
 # ゆっくり回っていて、プレイヤーが近づくと高速回転＆火花。触れるとゲームオーバー。
 # Spins slowly; speeds up and sparks when the player is near. Touching it ends the game.
+# 型なしの変数があります：Web版では火花を CPUParticles2D に差し替えるためです（world.gd 参照）。
 # Untyped: World may swap this for a CPUParticles2D in web builds (see world.gd).
 @onready var sparks = $GPUParticles2D
 @onready var blade: Sprite2D = $blade

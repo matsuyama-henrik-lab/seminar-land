@@ -2,6 +2,7 @@ extends Area2D
 # 火の玉 / A fireball hazard.
 # 定期的に飛び出しては落ちて、また飛び出す。触れるとゲームオーバー。
 # Leaps up, falls back, waits, and leaps again. Touching it ends the game.
+# 型なしの変数があります：Web版では煙を CPUParticles2D に差し替えるためです（world.gd 参照）。
 # Untyped: World may swap this for a CPUParticles2D in web builds (see world.gd).
 @onready var smoke = $smoke
 

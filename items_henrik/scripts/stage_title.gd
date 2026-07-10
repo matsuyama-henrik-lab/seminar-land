@@ -22,42 +22,35 @@ func _ready() -> void:
 	duration = 1
 	label.text = stage_title
 
+# ステージに置かれた瞬間に呼ばれる。タイトルが2個以上ないか確かめます。
+# Called the moment it is placed in the stage; makes sure there is only one title.
 func _enter_tree() -> void:
-	# Find all active nodes of this specific class type
+	# すでにタイトルがあるか探す / look for a title that already exists
 	var duplicates: Array[Node] = get_tree().get_nodes_in_group(&"single_instance_title_nodes")
-	
-	if duplicates.size() > 0:
-		push_warning("Only one instance of %s is allowed! Removing duplicate." % name)
-		queue_free() # Safely remove the duplicate from memory
-	else:
-		# Register this first valid instance into the tracking group
-		add_to_group(&"single_instance_title_nodes")
-		
 
+	if duplicates.size() > 0:
+		# もう1個ある → この重複を消す / one already exists → remove this duplicate
+		push_warning("Only one instance of %s is allowed! Removing duplicate." % name)
+		queue_free()
+	else:
+		# 最初の1個として登録する / register this as the first (and only) one
+		add_to_group(&"single_instance_title_nodes")
+
+# 毎フレーム、タイトルの出る→待つ→消える演出を少しずつ進めます。
+# Each frame, advances the title's appear → hold → disappear animation.
 func _process(delta: float) -> void:
-	
 	if t>0:
 			t -= delta/duration
 			if state == 0:
 				label.material.set_shader_parameter("t", clamp(t,0,1))
 			elif state == 2:
 				label.material.set_shader_parameter("t", clamp(1-t,0,1))
-	else:	
-		t = 1 
+	else:
+		t = 1
 		state += 1
 		duration = 1
 		if state == 1:
 			duration = 2
-		
-			
-	
+
 	if state >2:
 		queue_free()
-	
-	
-	
-		
-			
-	
-	
-	

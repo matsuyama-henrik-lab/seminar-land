@@ -21,35 +21,37 @@ class_name TouchKeyButton
 # being held at once). Hidden until the first touch, so desktop keyboard play
 # never shows it.
 
-## Text shown on the button.
+## ボタンに表示する文字。/ Text shown on the button.
 @export var button_label: String = "RUN":
 	set(v):
 		button_label = v
 		if is_node_ready() and _button:
 			_button.text = v
 
-## The keyboard key this button emulates (KEY_SHIFT, KEY_V, ...). Set it to the
-## key the level's player script actually reads.
+## このボタンが押したことにするキーボードのキー（KEY_SHIFT, KEY_V …）。
+## ステージのプレイヤーが実際に読んでいるキーに合わせます。
+## The keyboard key this button emulates. Set it to the key the player reads.
 @export var emulated_key: Key = KEY_SHIFT
 
-## Button size in pixels.
+## ボタンの大きさ（ピクセル）。/ Button size in pixels.
 @export var button_size: Vector2 = Vector2(120, 120):
 	set(v):
 		button_size = v
 		if is_node_ready():
 			_apply_layout()
 
-## Top-left of the button measured from the screen's bottom-right corner
-## (negative values inset it from the edge). Give each instance a different
-## value so multiple buttons don't overlap.
+## 画面の右下すみから測ったボタンの左上の位置（マイナスで内側に寄ります）。
+## ボタンを複数置くときは、重ならないように別々の値にします。
+## Top-left of the button, measured from the screen's bottom-right corner.
 @export var offset_from_bottom_right: Vector2 = Vector2(-140, -280):
 	set(v):
 		offset_from_bottom_right = v
 		if is_node_ready():
 			_apply_layout()
 
-## Show immediately instead of waiting for the first touch (handy for desktop
-## testing, or devices where you always want it visible).
+## 最初のタッチを待たず、すぐに表示します（PCでの動作確認や、
+## 常に表示したい端末に便利）。
+## Show immediately instead of waiting for the first touch (handy for desktop).
 @export var always_visible: bool = false
 
 var _button: Button
