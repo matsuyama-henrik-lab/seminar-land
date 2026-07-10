@@ -9,7 +9,7 @@ class_name TouchKeyButton
 # Reusable on-screen touch button that emulates a physical keyboard key.
 #
 # Drop one instance per key into any level to give touch players a control that
-# a keyboard-only player script already reads (e.g. student 04's run = SHIFT,
+# a keyboard-only player script already reads (e.g. run = SHIFT,
 # fire = V). Unlike world.gd's built-in D-pad -- which injects named input
 # *actions* -- this injects a real InputEventKey via Input.parse_input_event(),
 # so it drives scripts that poll Input.is_key_pressed(KEY_*) or read

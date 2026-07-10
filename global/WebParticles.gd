@@ -27,7 +27,7 @@ static func convert(node: Node) -> void:
 		cpu.convert_from_particles(node)
 		# convert_from_particles() handles velocity/accel/scale curves, but a few
 		# ParticleProcessMaterial features have no direct CPU equivalent and get
-		# dropped. Patch the ones students actually use back in by hand.
+		# dropped. Patch the ones actually used back in by hand.
 		var mat = node.process_material
 		if mat is ParticleProcessMaterial:
 			# Hue variation behaves differently than on the GPU; reproduce it.

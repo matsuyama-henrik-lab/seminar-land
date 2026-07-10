@@ -9,6 +9,9 @@ export_presets.cfg
 # Private local progress note (not for the public repo)
 /PROGRESS.local.md
 
+# Internal work plan (kept local, not for the public repo)
+/PLAN.md
+
 # Machine-local convenience symlink to the Godot editor binary
 /godot
 
