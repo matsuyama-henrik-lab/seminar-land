@@ -49,6 +49,14 @@ text = "Godot で、自分だけのステージを作ってみよう。プログ
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Controls" type="Label" parent="Content/Box" unique_id=2020658978]
+custom_minimum_size = Vector2(1120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "操作：←／→ で移動、スペースでジャンプ、Esc でメニューにもどる"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Link" type="Button" parent="Content/Box" unique_id=572103503]
 custom_minimum_size = Vector2(720, 96)
 layout_mode = 2
