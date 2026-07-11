@@ -8,6 +8,7 @@ extends Control
 signal start_pressed
 signal select_pressed
 signal tutorial_pressed
+signal about_pressed
 
 func _ready() -> void:
 	# Show the project's display name as the title (set in Project Settings).
@@ -15,6 +16,7 @@ func _ready() -> void:
 	$Content/Box/Start.pressed.connect(func(): start_pressed.emit())
 	$Content/Box/Select.pressed.connect(func(): select_pressed.emit())
 	$Content/Box/Tutorial.pressed.connect(func(): tutorial_pressed.emit())
+	$Content/Box/About.pressed.connect(func(): about_pressed.emit())
 
 # World hides the tutorial button when no tutorial levels are assigned, so the
 # menu simply doesn't offer a tutorials section unless there is one.

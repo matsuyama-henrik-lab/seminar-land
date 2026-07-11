@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cabout0land001"]
+
+[ext_resource type="Script" path="res://menus/about.gd" id="1"]
+
+[node name="About" type="Control" unique_id=1733250830]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=997381398]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2)
+
+[node name="Content" type="CenterContainer" parent="." unique_id=1678639631]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="Content" unique_id=588457027]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="Content/Box" unique_id=2020658975]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "このゲームについて"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Purpose" type="Label" parent="Content/Box" unique_id=2020658976]
+custom_minimum_size = Vector2(1120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Godot で、自分だけのステージを作ってみよう。プログラミングが初めての人でも大丈夫です。エンジンのコード（world.gd や player.gd）をさわらなくても、自分のステージが作れるように設計されています。"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Link" type="Button" parent="Content/Box" unique_id=572103503]
+custom_minimum_size = Vector2(720, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "ゲームのウェブサイトを開く"
+
+[node name="Back" type="Button" parent="Content/Box" unique_id=1983812085]
+custom_minimum_size = Vector2(680, 96)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 36
+text = "戻る"

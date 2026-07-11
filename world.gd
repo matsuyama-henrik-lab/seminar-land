@@ -44,6 +44,7 @@ var _single_level: bool = false
 @onready var _main_menu: Control = $MenuLayer/MainMenu
 @onready var _level_select: Control = $MenuLayer/LevelSelect
 @onready var _tutorial_select: Control = $MenuLayer/TutorialSelect
+@onready var _about: Control = $MenuLayer/About
 
 # The level array the currently-loaded level came from (`levels` for Start /
 # stage-select, `tutorial_levels` for the tutorial menu). `current_level_index`
@@ -126,6 +127,8 @@ func _connect_menus() -> void:
 	_main_menu.start_pressed.connect(_on_start_pressed)
 	_main_menu.select_pressed.connect(_on_select_pressed)
 	_main_menu.tutorial_pressed.connect(_on_tutorial_open)
+	_main_menu.about_pressed.connect(_on_about_open)
+	_about.back_pressed.connect(_show_main_menu)
 	_level_select.level_chosen.connect(_on_level_pressed)
 	_level_select.back_pressed.connect(_show_main_menu)
 	_tutorial_select.level_chosen.connect(_on_tutorial_level_pressed)
@@ -219,10 +222,16 @@ func _on_tutorial_play_all() -> void:
 	_hide_menu()
 	_load_level(0, tutorial_levels)
 
+# Opens the "About" panel (purpose blurb, tutorial-site link, credits).
+func _on_about_open() -> void:
+	_main_menu.hide()
+	_about.show()
+
 func _hide_menu() -> void:
 	_main_menu.hide()
 	_level_select.hide()
 	_tutorial_select.hide()
+	_about.hide()
 
 func _show_main_menu() -> void:
 	# Also used to come back after finishing: drop any running level and reset the
@@ -239,6 +248,7 @@ func _show_main_menu() -> void:
 	_lava_material.set_shader_parameter("sky_ends", 600)
 	_level_select.hide()
 	_tutorial_select.hide()
+	_about.hide()
 	_main_menu.show()
 	_show_background()
 
@@ -264,7 +274,7 @@ func _free_background() -> void:
 		_background_level = null
 
 func _menu_visible() -> bool:
-	return _main_menu.visible or _level_select.visible or _tutorial_select.visible
+	return _main_menu.visible or _level_select.visible or _tutorial_select.visible or _about.visible
 
 # The select menu currently on screen (stage list or tutorial list), or null.
 func _visible_select() -> Control:
@@ -363,7 +373,7 @@ func _pointer_release(id) -> void:
 func _input(event: InputEvent) -> void:
 	# ESC (ui_cancel): return to the main menu from a level or the level list.
 	if event.is_action_pressed("ui_cancel"):
-		if (_current_level and not _menu_visible()) or _visible_select() != null:
+		if (_current_level and not _menu_visible()) or _visible_select() != null or _about.visible:
 			_show_main_menu()
 			get_viewport().set_input_as_handled()
 		return

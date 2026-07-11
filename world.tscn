@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dtgwsj2qtvb22" path="res://example_levels/level_key.tscn" id="8_2u3nc"]
 [ext_resource type="PackedScene" uid="uid://clkpm4jnbogpd" path="res://menus/main_menu.tscn" id="8_menu"]
 [ext_resource type="PackedScene" uid="uid://dlcoo57g40m51" path="res://menus/level_select.tscn" id="9_lsel"]
+[ext_resource type="PackedScene" uid="uid://cabout0land001" path="res://menus/about.tscn" id="10_about"]
 [ext_resource type="PackedScene" uid="uid://d82x0750kgf1" path="res://example_levels/level_platform.tscn" id="9_udxuc"]
 [ext_resource type="PackedScene" uid="uid://dellqfte26po7" path="res://example_levels/level_gravity_flip.tscn" id="10_ikiii"]
 [ext_resource type="PackedScene" uid="uid://csqw7l381fih6" path="res://example_levels/level_timeout.tscn" id="11_cbp6q"]
@@ -131,4 +132,7 @@ visible = false
 visible = false
 
 [node name="TutorialSelect" parent="MenuLayer" unique_id=1819614402 instance=ExtResource("9_lsel")]
+visible = false
+
+[node name="About" parent="MenuLayer" unique_id=1819614403 instance=ExtResource("10_about")]
 visible = false
