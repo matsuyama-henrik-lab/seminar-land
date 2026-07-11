@@ -1,4 +1,4 @@
-# 基礎セミナーランド / Foundation Seminar Land
+# Seminar Land
 
 A tiny, beginner-friendly 2D platformer made with **Godot**, used in a
 university *foundation seminar* (基礎セミナー). It is designed so that a complete

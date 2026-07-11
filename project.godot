@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SeminarLand"
+config/name="Seminar Land"
 run/main_scene="uid://cn8muofn8v6xv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
