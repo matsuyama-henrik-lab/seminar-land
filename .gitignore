@@ -17,3 +17,5 @@ export_presets.cfg
 
 # Cross-machine handoff note for Claude (copied manually, never committed)
 /HANDOFF.local.md
+
+/CLAUDE.md
