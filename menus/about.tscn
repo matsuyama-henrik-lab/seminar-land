@@ -45,7 +45,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(1120, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
-text = "Godot で、自分だけのステージを作ってみよう。プログラミングが初めての人でも大丈夫です。エンジンのコード（world.gd や player.gd）をさわらなくても、自分のステージが作れるように設計されています。"
+text = "Godot（ゲームを作る無料のソフト）で、自分だけのステージを作ってみよう。プログラミングが初めての人でも大丈夫です。難しいコードを書かなくても、用意された部品を並べるだけで自分のステージが作れるように設計されています。"
 horizontal_alignment = 1
 autowrap_mode = 2
 

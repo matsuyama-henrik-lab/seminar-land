@@ -1,15 +1,15 @@
 # Seminar Land
 
-A tiny, beginner-friendly 2D platformer made with **Godot**, used in a
-university *foundation seminar* (基礎セミナー). It is designed so that a complete
-beginner can build their own stage (ステージ) and, if they like, write their first
-few lines of code, **without ever editing the engine code** (`world.gd` /
-`player.gd`).
+A tiny, beginner-friendly 2D platformer made with **Godot** (a free game-making
+tool), used in a university *foundation seminar* (基礎セミナー). It is designed so
+that a complete beginner can build their own stage (ステージ) just by placing
+ready-made parts, **without writing any difficult code**, and, if they like,
+write their first few lines of code too.
 
-**Godot** で作った、小さな初心者向け 2D プラットフォーマーです。大学の
-**基礎セミナー**で使っています。プログラミングが初めての人でも、自分の
-**ステージ**を作り、さらにやりたければ数行のコードが書けるように作られています。
-エンジン側のコード（`world.gd` / `player.gd`）は**さわらなくて大丈夫**です。
+**Godot**（ゲームを作る無料のソフト）で作った、小さな初心者向け 2D
+プラットフォーマーです。大学の**基礎セミナー**で使っています。プログラミングが
+初めての人でも、**難しいコードを書かなくても**、用意された部品を並べるだけで
+自分の**ステージ**が作れます。さらにやりたければ、数行のコードを書くこともできます。
 
 > ✅ **Tested with Godot 4.6** / **動作確認バージョン：Godot 4.6**
 
