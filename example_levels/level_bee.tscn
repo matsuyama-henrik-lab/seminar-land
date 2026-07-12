@@ -232,10 +232,10 @@ position = Vector2(83, -196)
 [node name="flag" parent="." unique_id=1159964731 instance=ExtResource("4_ldm8x")]
 position = Vector2(1608, -382)
 
-[node name="Bee_location" parent="." unique_id=1673866677 instance=ExtResource("5_7dahc")]
+[node name="Bee" parent="." unique_id=1673866677 instance=ExtResource("5_7dahc")]
 position = Vector2(465, -425)
 
-[node name="Bee_location2" parent="." unique_id=744532111 instance=ExtResource("5_7dahc")]
+[node name="Bee2" parent="." unique_id=744532111 instance=ExtResource("5_7dahc")]
 position = Vector2(1161, -611)
 scale = Vector2(2, 2)
 attack_speed = 0.5
