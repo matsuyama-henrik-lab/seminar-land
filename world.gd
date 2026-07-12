@@ -240,6 +240,9 @@ func _show_main_menu() -> void:
 		_current_level.free()
 		_current_level = null
 	_swapping = false
+	# Release any button still held when a level ends and hands us back to the menu
+	# (single-level mode / end of a playthrough), so its action isn't left pressed.
+	_release_all_pointers()
 	# The on-screen touch controls belong to gameplay; hide them behind the menu.
 	$CanvasLayer/HBoxContainer.hide()
 	$CanvasLayer/HBoxContainer2.hide()
@@ -369,6 +372,17 @@ func _pointer_release(id) -> void:
 		for btn in _touch_buttons:
 			if _touch_buttons[btn] == action:
 				btn.button_pressed = false
+
+# Drop every on-screen button the player is still holding. Called on each level
+# swap and when returning to the menu: if a level ends while a button is held,
+# its input action stays pressed (and the button stays lit), so without this the
+# player would keep moving in the next level even after the finger is lifted.
+func _release_all_pointers() -> void:
+	for action in _active_pointers.values():
+		Input.action_release(action)
+	_active_pointers.clear()
+	for btn in _touch_buttons:
+		btn.button_pressed = false
 
 func _input(event: InputEvent) -> void:
 	# ESC (ui_cancel): return to the main menu from a level or the level list.
@@ -520,6 +534,9 @@ func _do_swap() -> void:
 	# A real level is starting; drop the decorative background so it isn't running
 	# (and its camera fighting the real player's) behind actual gameplay.
 	_free_background()
+	# Let go of any button held as the previous level ended, so its action doesn't
+	# carry into the new level.
+	_release_all_pointers()
 	if _current_level:
 		_current_level.free()  # immediate, so the old level can't overlap the new one for a frame
 		_current_level = null

@@ -23,6 +23,19 @@ func _ready() -> void:
 	$Content/Box/Back.pressed.connect(func(): back_pressed.emit())
 	if about_text.strip_edges() != "":
 		$Content/Box/Purpose.text = about_text
+	# 画面幅に合わせて文章の幅を決める（狭いスマホでも左右にはみ出さないように）。
+	# Size the text column to the real screen width so it never spills off the
+	# edges on a narrow phone. Re-run on rotation / resize.
+	get_viewport().size_changed.connect(_fit_text_width)
+	_fit_text_width()
+
+# 文章ラベルの幅を、画面幅から少し余白を引いた値（最大1120）にそろえます。
+# Clamp the text labels to the viewport width (minus a small margin), capped at
+# the 1120 design width, so autowrap always has a width that fits the screen.
+func _fit_text_width() -> void:
+	var width: float = minf(1120.0, get_viewport_rect().size.x - 48.0)
+	$Content/Box/Purpose.custom_minimum_size.x = width
+	$Content/Box/Controls.custom_minimum_size.x = width
 
 # サイトをブラウザで開きます（デスクトップ）。Web版では新しいタブで開きます。
 # Opens the site in the browser (desktop); on the web build it opens a new tab.
