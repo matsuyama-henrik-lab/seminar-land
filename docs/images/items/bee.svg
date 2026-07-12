@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="383.99997"
+   width="128"
    height="127.99999"
-   viewBox="0 0 101.59999 33.866664"
+   viewBox="0 0 33.866666 33.866664"
    version="1.1"
    id="svg1"
-   sodipodi:docname="icon_Bee.svg"
+   sodipodi:docname="bee.svg"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    inkscape:export-filename="seminar_2026/items/icon_Gravity.png"
    inkscape:export-xdpi="96"
@@ -100,52 +100,6 @@
        y="66.410416"
        rx="0"
        ry="0" />
-    <circle
-       style="fill:#e1c43b;fill-opacity:1;stroke-width:0.440719"
-       id="path1-9"
-       cx="50.799999"
-       cy="16.933334"
-       r="11.129828" />
-    <path
-       id="rect3-3"
-       style="stroke-width:0.356775"
-       d="m 42.919344,9.073865 a 11.129828,11.129828 0 0 0 -1.783353,2.338358 H 60.46401 A 11.129828,11.129828 0 0 0 58.680656,9.073865 Z m -3.13986,6.304008 a 11.129828,11.129828 0 0 0 -0.109554,1.55546 11.129828,11.129828 0 0 0 0.02791,0.783415 h 22.20433 a 11.129828,11.129828 0 0 0 0.02791,-0.783415 11.129828,11.129828 0 0 0 -0.109554,-1.55546 z m 0.767395,5.884912 a 11.129828,11.129828 0 0 0 1.342037,2.338874 h 17.822168 a 11.129828,11.129828 0 0 0 1.342037,-2.338875 z" />
-    <circle
-       style="fill:#000000;fill-opacity:1;stroke-width:0.332118"
-       id="path3-1"
-       cx="47.982075"
-       cy="13.357936"
-       r="1.7414157" />
-    <circle
-       style="fill:#000000;fill-opacity:1;stroke-width:0.332118"
-       id="path3-5-9"
-       cx="52.885754"
-       cy="13.426562"
-       r="1.7414157" />
-    <ellipse
-       style="fill:#e4e4e4;fill-opacity:1;stroke-width:0.339744"
-       id="path4-4"
-       cx="30.051334"
-       cy="28.026897"
-       rx="3.3734374"
-       ry="1.9182291"
-       inkscape:transform-center-x="3.0313"
-       transform="rotate(-26.028105)"
-       inkscape:transform-center-y="1.4803054" />
-    <ellipse
-       style="fill:#e4e4e4;fill-opacity:1;stroke-width:0.339744"
-       id="path4-9-7"
-       cx="61.008602"
-       cy="-17.279222"
-       rx="3.3734374"
-       ry="1.9182291"
-       inkscape:transform-center-x="-3.0156469"
-       transform="rotate(26.627568)"
-       inkscape:transform-center-y="1.5119384" />
-    <path
-       style="fill:#010101;fill-opacity:1;stroke-width:0.500487"
-       d="m 49.395026,27.156958 0.841899,5.396469 1.403165,-5.519116 z"
-       id="path5-8" />
     <rect
        style="fill:#626262;fill-opacity:1;stroke-width:0.849671"
        id="rect5-2-6"
@@ -155,51 +109,5 @@
        y="66.410416"
        rx="0"
        ry="0" />
-    <circle
-       style="fill:#e1c43b;fill-opacity:1;stroke-width:0.440719"
-       id="path1-9-1"
-       cx="84.666664"
-       cy="16.933334"
-       r="11.129828" />
-    <path
-       id="rect3-3-0"
-       style="stroke-width:0.356775"
-       d="M 76.78601,9.0738652 A 11.129828,11.129828 0 0 0 75.002657,11.412223 H 94.330676 A 11.129828,11.129828 0 0 0 92.547322,9.0738652 Z m -3.13986,6.3040078 a 11.129828,11.129828 0 0 0 -0.109554,1.55546 11.129828,11.129828 0 0 0 0.02791,0.783415 h 22.204327 a 11.129828,11.129828 0 0 0 0.0279,-0.783415 11.129828,11.129828 0 0 0 -0.109551,-1.55546 z m 0.767395,5.884912 a 11.129828,11.129828 0 0 0 1.342037,2.338874 H 93.57775 a 11.129828,11.129828 0 0 0 1.342037,-2.338875 z" />
-    <circle
-       style="fill:#000000;fill-opacity:1;stroke-width:0.332118"
-       id="path3-1-6"
-       cx="81.84874"
-       cy="13.357936"
-       r="1.7414157" />
-    <circle
-       style="fill:#000000;fill-opacity:1;stroke-width:0.332118"
-       id="path3-5-9-3"
-       cx="86.752419"
-       cy="13.426562"
-       r="1.7414157" />
-    <ellipse
-       style="fill:#e4e4e4;fill-opacity:1;stroke-width:0.339744"
-       id="path4-4-2"
-       cx="67.694611"
-       cy="-29.434389"
-       rx="3.3734374"
-       ry="1.9182291"
-       inkscape:transform-center-x="2.9109355"
-       transform="rotate(30.356324)"
-       inkscape:transform-center-y="-1.7048554" />
-    <ellipse
-       style="fill:#e4e4e4;fill-opacity:1;stroke-width:0.339744"
-       id="path4-9-7-0"
-       cx="80.674965"
-       cy="52.972992"
-       rx="3.3734374"
-       ry="1.9182291"
-       inkscape:transform-center-x="-2.9769277"
-       transform="rotate(-28.059438)"
-       inkscape:transform-center-y="-1.5868224" />
-    <path
-       style="fill:#010101;fill-opacity:1;stroke-width:0.500487"
-       d="m 83.261692,27.156958 0.841899,5.396469 1.403165,-5.519116 z"
-       id="path5-8-6" />
   </g>
 </svg>
