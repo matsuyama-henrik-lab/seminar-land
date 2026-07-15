@@ -7,7 +7,7 @@
    viewBox="0 0 33.866666 33.866666"
    version="1.1"
    id="svg1"
-   sodipodi:docname="icon_Saw.svg"
+   sodipodi:docname="garigari.svg"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    inkscape:export-filename="seminar_2026/items/icon_Gravity.png"
    inkscape:export-xdpi="96"
@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="4"
-     inkscape:cx="63.125"
-     inkscape:cy="72"
+     inkscape:zoom="1"
+     inkscape:cx="50.5"
+     inkscape:cy="323"
      inkscape:window-width="1270"
      inkscape:window-height="1217"
      inkscape:window-x="0"
@@ -52,5 +52,27 @@
        style="fill:#575757;fill-opacity:1;stroke-width:0.437092"
        d="M 16.801041,5.7546874 19.380729,1.190625 c 0,0 1.190625,6.0854166 2.050521,5.8208332 0.859896,-0.2645833 7.672916,-2.2489583 7.672916,-2.2489583 l -2.711979,6.4822921 3.638021,0.396875 -2.248958,2.84427 4.828645,3.571875 -5.291666,1.852084 3.638021,6.217708 -7.408334,-0.264583 2.579688,5.754687 L 20.769791,27.384375 20.240625,32.54375 18.057812,27.913541 14.353646,32.54375 12.567708,27.053645 7.2760416,30.757812 8.6651041,24.540104 4.2333333,25.267708 6.9453124,22.158854 1.190625,22.688021 5.7546874,18.653125 0.79374999,17.197916 5.8869791,16.205729 1.3229166,10.120312 7.4083332,10.517187 6.5484374,4.4979166 l 5.6885416,2.4473958 1.5875,-5.0932291 z"
        id="path2" />
+    <g
+       id="g1"
+       transform="translate(-0.81107814,20.355589)">
+      <circle
+         style="fill:#696969;fill-opacity:1;stroke-width:0.440719"
+         id="path1-3"
+         cx="17.744411"
+         cy="-3.4222555"
+         r="11.129828" />
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke-width:0.53579"
+         id="path2-5"
+         cx="12.463414"
+         cy="-7.1669626"
+         r="2.3919187" />
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke-width:0.53579"
+         id="path3"
+         cx="22.440769"
+         cy="-7.5232973"
+         r="2.5135417" />
+    </g>
   </g>
 </svg>

@@ -167,18 +167,18 @@
 `items_henrik/` フォルダには、すぐ使えるアイテムがそろっています。
 名前をクリックすると、**詳しい使い方のページ**が開きます。
 
-| ファイル | どんなアイテム？ |
-| --- | --- |
-| [`spring.tscn`](items/spring.md) | ばね。乗ると高くジャンプ。 |
-| [`cannon.tscn`](items/cannon.md) | 大砲。プレイヤーを発射！ |
-| [`bee.tscn`](items/bee.md) | ハチ（うごく敵）。 |
-| [`fireball.tscn`](items/fireball.md) | 火の玉。 |
-| [`garigari.tscn`](items/garigari.md) | 回るノコギリ（危険）。 |
-| [`key.tscn`](items/key.md) | カギ。集めるしかけに使えます。 |
-| [`platform.tscn`](items/platform.md) | 足場（スクリプトなし）。 |
-| [`gravity_flip.tscn`](items/gravity_flip.md) | 重力逆転。 |
-| [`timeout.tscn`](items/timeout.md) | 時間制限。 |
-| [`stage_title.tscn`](items/stage_title.md) | ステージ名の表示（開始時にふわっと出る）。 |
+| 見た目 | ファイル | どんなアイテム？ |
+| --- | --- | --- |
+| <img src="images/items/spring.svg" width="40"> | [spring.tscn](items/spring.md) | ばね。乗ると高くジャンプ。 |
+| <img src="images/items/cannon.svg" width="40"> | [cannon.tscn](items/cannon.md) | 大砲。プレイヤーを発射！ |
+| <img src="images/items/bee.svg" width="40"> | [bee.tscn](items/bee.md) | ハチ（うごく敵）。 |
+| <img src="images/items/fireball.svg" width="40"> | [fireball.tscn](items/fireball.md) | 火の玉。 |
+| <img src="images/items/garigari.svg" width="40"> | [garigari.tscn](items/garigari.md) | 回るノコギリ（危険）。 |
+| <img src="images/items/key.svg" width="40"> | [key.tscn](items/key.md) | カギ。集めるしかけに使えます。 |
+| <img src="images/items/platform.svg" width="40"> | [platform.tscn](items/platform.md) | 足場（スクリプトなし）。 |
+| <img src="images/items/gravity_flip.png" width="40"> | [gravity_flip.tscn](items/gravity_flip.md) | 重力逆転。 |
+| <img src="images/items/timeout.svg" width="40"> | [timeout.tscn](items/timeout.md) | 時間制限。 |
+| 🏷️ | [stage_title.tscn](items/stage_title.md) | ステージ名の表示（開始時にふわっと出る）。 |
 
 **→ [アイテム図鑑（一覧ページ）](items/index.md)** で、絵つきの一覧を見られます。
 
