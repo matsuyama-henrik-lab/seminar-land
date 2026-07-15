@@ -88,8 +88,8 @@
        width="28"
        height="28"
        rx="4"
-       fill="#2f6fb0"
-       stroke="#2f6fb0"
+       fill="#ffffff"
+       stroke="#888"
        stroke-width="1.5"
        id="rect4" />
     <rect
