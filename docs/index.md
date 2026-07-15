@@ -13,6 +13,21 @@
 
 ---
 
+## 🎮 まずは体験してみよう
+
+実際に遊んでいる様子は、下の**デモ動画**で見られます。
+インストールしなくても、**ブラウザですぐに遊べる体験版**も用意してあります。
+
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:800px;margin:1em 0;">
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube-nocookie.com/embed/iGnPzkEUrkA" title="Seminar Land デモ動画" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<p>
+  ▶ <a href="https://glowing-kleicha-ddb209.netlify.app/" target="_blank" rel="noopener"><strong>ブラウザ版で遊んでみる</strong></a>（別のタブで開きます。ダウンロード不要）
+</p>
+
+---
+
 ## もくじ
 
 1. [Godot をインストールする](#1-godot-をインストールする)
@@ -86,6 +101,8 @@
 
 ## 4. ステージを一覧に登録する
 
+![ステージ一覧の設定](images/usage/level_setup_howto.jpg)
+
 作ったステージを、ゲームの**ステージ一覧に登録**しないと、遊ぶ画面に出てきません。
 登録は `world.tscn` の **`levels`（ステージ一覧）** に追加するだけです。
 エンジンのコードを書き変える必要はありません。
@@ -94,10 +111,19 @@
 2. 左の「Scene（シーン）」パネルで、一番上の **`World`** ノードをクリック。
 3. 右の **「Inspector（インスペクター）」** に **`Levels`** という項目があります。
    これがステージの一覧です。
-4. `Levels` の右の数字（配列の要素数）を1つ増やすと、空っぽの枠が増えます。
-5. 増えた枠に、FileSystem から自分の **`level_mystage.tscn`** をドラッグして
-   ドロップします。
-6. **Ctrl+S** で保存し、**F5** で実行して確認しましょう。
+4. ステージを一覧に**追加**するには、次の2つのやり方があります。どちらでもOKです。
+   - **①ドラッグ＆ドロップ**：FileSystem から自分の **`level_mystage.tscn`** を、
+     `Levels` の一覧に直接ドラッグして落とすと、新しい枠が増えてそこに入ります。
+   - **②ボタンで追加**：`Levels` の下の **「＋ 要素を追加」** ボタンを押すと空っぽの枠が
+     増えます。その枠にステージを入れる方法は2通りです。
+     - FileSystem から `level_mystage.tscn` を、その枠にドラッグして入れる。
+     - 枠に出てくる**フォルダのアイコン**をクリックし、開いたメニューの
+       **「クイックロード」／「読み込み」** から `level_mystage.tscn` を選ぶ。
+5. **③削除**：いらなくなったステージは、その行の右にある**ゴミ箱ボタン**で一覧から
+   外せます。一覧から外れるだけで、ステージのファイル自体は消えません。
+6. **④順番の入れ替え**：一覧の**上から順番**に遊ぶことになります。各行の左にある
+   **≡（並べ替えハンドル）** を上下にドラッグすると、順番を入れ替えられます。
+7. **Ctrl+S** で保存し、**F5** で実行して確認しましょう。
 
 > 💡 **`Exclude From Level Select`**（ステージ選択から隠す）に入れると、
 > 順番に遊ぶときには出てくるけれど「ステージ選択」画面には出ない、
