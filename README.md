@@ -21,6 +21,19 @@ write their first few lines of code too.
 
 **→ [`docs/` チュートリアル](docs/index.md)**
 
+> **Note:** This tutorial is a *complementary* resource, not an exhaustive,
+> end-to-end guide. It grew out of a real 基礎セミナー (four 90-minute units) where
+> students built a Godot stage, made their own items, and drew the item graphics
+> in Microsoft Paint (drawing is not covered here). Some steps may need a
+> teacher's guidance or the help of an AI assistant, and it is meant to let
+> students keep building after the class ends.
+>
+> （このチュートリアルは、すべてを網羅する完全な手引きではなく、授業の**補助教材**
+> です。実際の**基礎セミナー**（90分×4回）で Godot のステージを作り、アイテムを自作
+> し、その絵を Microsoft ペイントで描いた経験をもとにしています（絵の描き方は
+> 扱っていません）。場面によっては先生や AI（コーディング支援）の助けが必要です。
+> 授業のあとも自分で作り続けられるように用意しています。）
+
 （GitHub Pages で公開する場合は `Settings → Pages → Source: main / docs`。
 Once published, it is served from `https://<user>.github.io/<repo>/`.）
 
