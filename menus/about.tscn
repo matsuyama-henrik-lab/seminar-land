@@ -47,7 +47,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Godot（ゲームを作る無料のソフト）で、自分だけのステージを作ってみよう。プログラミングが初めての人でも大丈夫です。難しいコードを書かなくても、用意された部品を並べるだけで自分のステージが作れるように設計されています。"
 horizontal_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Controls" type="Label" parent="Content/Box" unique_id=2020658978]
 custom_minimum_size = Vector2(1120, 0)
@@ -55,7 +55,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "操作：←／→ で移動、スペースでジャンプ、Esc でメニューにもどる"
 horizontal_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="Link" type="Button" parent="Content/Box" unique_id=572103503]
 custom_minimum_size = Vector2(720, 96)
