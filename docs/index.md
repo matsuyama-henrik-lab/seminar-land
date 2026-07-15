@@ -23,7 +23,7 @@
 </div>
 
 <p>
-  ▶ <a href="https://glowing-kleicha-ddb209.netlify.app/" target="_blank" rel="noopener"><strong>ブラウザ版で遊んでみる</strong></a>（別のタブで開きます。ダウンロード不要）
+  ▶ <a href="https://soft-cassata-1724ce.netlify.app/" target="_blank" rel="noopener"><strong>ブラウザ版で遊んでみる</strong></a>（別のタブで開きます。ダウンロード不要）
 </p>
 
 ---
