@@ -3,13 +3,18 @@
 A tiny, beginner-friendly 2D platformer made with **Godot** (a free game-making
 tool), used in a university *foundation seminar* (基礎セミナー). It is designed so
 that a complete beginner can build their own stage (ステージ) just by placing
-ready-made parts, **without writing any difficult code**, and, if they like,
-write their first few lines of code too.
+ready-made parts, **without writing any difficult code**. With a little code they
+can also make their own items, using the included examples; and since Godot's
+language is a lot like Python, it is a gentle first step into programming. Anyone
+comfortable with code can extend the game almost without limit.
 
 **Godot**（ゲームを作る無料のソフト）で作った、小さな初心者向け 2D
 プラットフォーマーです。大学の**基礎セミナー**で使っています。プログラミングが
 初めての人でも、**難しいコードを書かなくても**、用意された部品を並べるだけで
-自分の**ステージ**が作れます。さらにやりたければ、数行のコードを書くこともできます。
+自分の**ステージ**が作れます。さらに、少しコードを書けば、見本を参考に
+**自分だけの部品（アイテム）**を作ることもできます。Godot の言語は Python に
+よく似ているので、プログラミングに挑戦したい人にもぴったりです。自信がある人は、
+ゲームを好きなだけ拡張していけます。
 
 > ✅ **Tested with Godot 4.6** / **動作確認バージョン：Godot 4.6**
 
